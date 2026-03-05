@@ -1,4 +1,4 @@
-﻿kind: "AppStack"
+kind: "AppStack"
 schemaVersion: "v1"
 runConfig:
   concurrency: 80
