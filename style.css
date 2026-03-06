@@ -42,11 +42,24 @@ nav {
 }
 
 .logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary-color);
     text-decoration: none;
     letter-spacing: -1px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.logo span {
+    line-height: 1;
 }
 
 .nav-links {
