@@ -234,6 +234,17 @@ section h2::after {
     text-align: center;
 }
 
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
 footer {
     background: #222;
     color: #999;
