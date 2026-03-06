@@ -52,10 +52,14 @@ nav {
     letter-spacing: -1px;
 }
 
-.logo-img {
-    height: 36px;
-    width: auto;
-    object-fit: contain;
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.logo span {
+    line-height: 1;
 }
 
 /* 햄버거 메뉴 버튼 */
