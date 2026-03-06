@@ -245,6 +245,16 @@ section h2::after {
     text-decoration: underline;
 }
 
+/* PC 모드에서 주소 클릭 무력화 */
+@media (min-width: 769px) {
+    .address-link {
+        pointer-events: none; /* 클릭 방지 */
+        cursor: default;     /* 마우스 커서를 일반 텍스트용으로 변경 */
+        color: var(--text-color) !important; /* 일반 텍스트 색상으로 변경 */
+        text-decoration: none !important;    /* 밑줄 방지 */
+    }
+}
+
 footer {
     background: #222;
     color: #999;
