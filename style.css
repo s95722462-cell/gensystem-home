@@ -280,15 +280,6 @@ nav {
     background: #008a25;
 }
 
-.btn-kakao {
-    background: #fee500;
-    color: #000000 !important;
-}
-
-.btn-kakao:hover {
-    background: #fada00;
-}
-
 section {
     padding: 80px 0;
 }
@@ -445,26 +436,51 @@ section h2::after {
     text-decoration: underline;
 }
 
-/* 플로팅 버튼 */
-.floating-kakao {
+/* 플로팅 버튼 그룹 */
+.floating-btns {
     position: fixed;
     right: 25px;
     bottom: 25px;
-    width: 60px;
-    height: 60px;
-    background: #fee500;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.floating-btn {
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 999;
     transition: var(--transition);
-    animation: bounce 2s infinite;
+    text-decoration: none;
 }
 
-.floating-kakao:hover {
+.floating-btn:hover {
     transform: scale(1.1) translateY(-5px);
+}
+
+.floating-btn svg {
+    width: 26px;
+    height: 26px;
+}
+
+.btn-contact-float {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-store-float {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-kakao-float {
+    background: #fee500;
+    animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
@@ -577,10 +593,19 @@ footer {
         padding: 20px;
     }
 
-    .floating-kakao {
-        width: 50px;
-        height: 50px;
-        right: 20px;
-        bottom: 20px;
+    .floating-btns {
+        right: 15px;
+        bottom: 15px;
+        gap: 8px;
+    }
+
+    .floating-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .floating-btn svg {
+        width: 22px;
+        height: 22px;
     }
 }
