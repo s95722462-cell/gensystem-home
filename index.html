@@ -309,16 +309,19 @@
             });
             const activeLangEl = document.getElementById(`lang-${lang}`);
             if (activeLangEl) activeLangEl.classList.add('active');
+// 언어 선택 후 메뉴 닫기 (드롭다운 및 전체 모바일 메뉴)
+const langMenu = document.getElementById('lang-menu');
+if (langMenu) langMenu.classList.remove('show');
 
-            const langMenu = document.getElementById('lang-menu');
-            if (langMenu) {
-                langMenu.classList.remove('show');
-            }
+const navLinks = document.querySelector('.nav-links');
+const menuToggle = document.querySelector('.menu-toggle');
+if (navLinks) navLinks.classList.remove('active');
+if (menuToggle) menuToggle.classList.remove('active');
 
-            localStorage.setItem('preferred-lang', lang);
-            document.documentElement.lang = lang;
-        }
-
+// 선택 언어 저장
+localStorage.setItem('preferred-lang', lang);
+document.documentElement.lang = lang;
+}
         function toggleLangMenu(event) {
             event.stopPropagation();
             const langMenu = document.getElementById('lang-menu');
