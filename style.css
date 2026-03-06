@@ -399,28 +399,6 @@ section h2::after {
     border: 1px solid #eee;
 }
 
-.shop-section {
-    text-align: center;
-}
-
-.store-banner {
-    display: block;
-    margin-top: 30px;
-    padding: 40px;
-    background: var(--secondary-color);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    transition: var(--transition);
-}
-
-.store-banner:hover {
-    background: #008a25;
-    transform: scale(1.02);
-}
-
 .contact-info {
     text-align: center;
 }
