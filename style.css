@@ -439,33 +439,43 @@ section h2::after {
 /* 플로팅 버튼 그룹 */
 .floating-btns {
     position: fixed;
-    right: 25px;
-    bottom: 25px;
+    right: 30px;
+    bottom: 30px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-end;
+    gap: 15px;
     z-index: 999;
 }
 
 .floating-btn {
-    width: 55px;
     height: 55px;
-    border-radius: 50%;
+    padding: 0 20px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     transition: var(--transition);
     text-decoration: none;
+    background: white;
+    color: var(--text-color);
+}
+
+.float-label {
+    font-weight: 700;
+    font-size: 0.95rem;
 }
 
 .floating-btn:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .floating-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
 }
 
 .btn-contact-float {
@@ -480,6 +490,7 @@ section h2::after {
 
 .btn-kakao-float {
     background: #fee500;
+    color: #3A1D1D;
     animation: bounce 2s infinite;
 }
 
@@ -602,6 +613,12 @@ footer {
     .floating-btn {
         width: 48px;
         height: 48px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .float-label {
+        display: none; /* 모바일에서는 텍스트 숨김 */
     }
 
     .floating-btn svg {
