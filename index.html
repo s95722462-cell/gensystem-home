@@ -13,8 +13,8 @@
             <h1 class="logo">
                 <a href="#">
                     <svg class="logo-icon" width="40" height="40" viewBox="0 0 100 100">
-                        <rect x="10" y="10" width="60" height="60" fill="#ff3b30" /> <!-- 빨간 사각형 -->
-                        <rect x="30" y="30" width="60" height="60" fill="#0000aa" /> <!-- 파란 사각형 -->
+                        <rect x="10" y="10" width="60" height="60" fill="#ff3b30" />
+                        <rect x="30" y="30" width="60" height="60" fill="#0000aa" />
                     </svg>
                     <span>GEN SYSTEM</span>
                 </a>
@@ -92,6 +92,25 @@
         <p>&copy; 2025 GEN SYSTEM. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollLinks = document.querySelectorAll('a[href^="#"]');
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#' && href.startsWith('#')) {
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            e.preventDefault();
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 70,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
