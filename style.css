@@ -138,6 +138,15 @@ nav {
     background: #008a25;
 }
 
+.btn-kakao {
+    background: #fee500;
+    color: #000000 !important;
+}
+
+.btn-kakao:hover {
+    background: #fada00;
+}
+
 section {
     padding: 80px 0;
 }
