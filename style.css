@@ -52,14 +52,32 @@ nav {
     letter-spacing: -1px;
 }
 
-.logo-icon {
-    width: 32px;
-    height: 32px;
-    display: block;
+.logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
 }
 
-.logo span {
-    line-height: 1;
+/* 햄버거 메뉴 버튼 */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: var(--transition);
+    border-radius: 3px;
 }
 
 .nav-links {
@@ -217,6 +235,55 @@ section h2::after {
     color: var(--primary-color);
 }
 
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--light-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.card:hover .card-icon {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.card-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.brands-section {
+    text-align: center;
+    background: var(--light-bg);
+    border-radius: 20px;
+    margin: 40px 0;
+}
+
+.brand-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.brand-tags span {
+    background: var(--white);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
 .shop-section {
     text-align: center;
 }
@@ -254,6 +321,33 @@ section h2::after {
     text-decoration: underline;
 }
 
+/* 플로팅 버튼 */
+.floating-kakao {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    background: #fee500;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: var(--transition);
+    animation: bounce 2s infinite;
+}
+
+.floating-kakao:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
 /* PC 모드에서 주소 클릭 무력화 */
 @media (min-width: 769px) {
     .address-link {
@@ -274,8 +368,39 @@ footer {
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
     .nav-links {
-        display: none; /* 심플한 모바일을 위해 메뉴 숨김 (필요시 햄버거 메뉴 추가) */
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
     }
     
     .hero h2 {
@@ -292,5 +417,12 @@ footer {
     
     .about-content {
         padding: 20px;
+    }
+
+    .floating-kakao {
+        width: 50px;
+        height: 50px;
+        right: 20px;
+        bottom: 20px;
     }
 }

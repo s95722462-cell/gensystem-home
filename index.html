@@ -23,13 +23,15 @@
         <nav class="container">
             <h1 class="logo">
                 <a href="#">
-                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 100 100">
-                        <rect x="10" y="10" width="60" height="60" fill="#ff3b30" />
-                        <rect x="30" y="30" width="60" height="60" fill="#0000aa" />
-                    </svg>
+                    <img src="GEN SYSTEM.png" alt="GEN SYSTEM Logo" class="logo-img">
                     <span>GEN SYSTEM</span>
                 </a>
             </h1>
+            <button class="menu-toggle" aria-label="메뉴 열기">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#about">회사 소개</a></li>
                 <li><a href="#services">서비스</a></li>
@@ -68,17 +70,39 @@
             <h2>Our Services</h2>
             <div class="service-cards">
                 <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
                     <h3>자동화 부품 수입/공급</h3>
                     <p>전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다.</p>
                 </div>
                 <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
                     <h3>글로벌 수출입 대행</h3>
                     <p>해외 제품의 국내 수입은 물론, 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다.</p>
                 </div>
                 <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
                     <h3>기술 컨설팅</h3>
                     <p>설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="brands" class="brands-section">
+            <h2>Key Brands & Parts</h2>
+            <div class="brand-tags">
+                <span>Mitsubishi PLC</span>
+                <span>Servo Motor</span>
+                <span>Inverter</span>
+                <span>Sensor</span>
+                <span>Pneumatics</span>
+                <span>HMI</span>
+                <span>Industrial PC</span>
             </div>
         </section>
 
@@ -101,16 +125,36 @@
         </section>
     </main>
 
+    <!-- 플로팅 카카오톡 버튼 -->
+    <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" class="floating-kakao" title="카카오톡 문의하기">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.558 1.712 4.8 4.346 6.09-.165.565-.596 2.034-.683 2.342-.11.386.138.38.292.277.12-.08.193-.133.272-.188.755-.522 2.11-1.455 2.11-1.455.856.166 1.76.248 2.663.248 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/></svg>
+    </a>
+
     <footer>
         <p>&copy; 2025 GEN SYSTEM. All Rights Reserved.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 모바일 메뉴 토글
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // 스크롤 시 메뉴 닫기 및 부드러운 이동
             const scrollLinks = document.querySelectorAll('a[href^="#"]');
             scrollLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
+                    
+                    // 모바일 메뉴 닫기
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+
                     if (href && href !== '#' && href.startsWith('#')) {
                         const targetElement = document.querySelector(href);
                         if (targetElement) {
