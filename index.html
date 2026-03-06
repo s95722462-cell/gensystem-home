@@ -233,7 +233,7 @@
                 "about-li3": "<strong>グローバルネットワーク:</strong> 海外の優秀な製品の輸入および国内部品の海外輸出の最適化",
                 "services-title": "Our Services",
                 "service1-title": "自動化部品の輸入/供給",
-                "service1-p": "全世界の競争力のある自動化部品を発掘し、国内の産業現場에迅速に供給します。",
+                "service1-p": "全世界の競争力のある自動化部品を発掘し、国内の産業現場に迅速に供給します。",
                 "service2-title": "グローバル輸出入代行",
                 "service2-p": "海外製品の国内輸入はもちろん、優れた国内製品を海外市場につなげる架け橋の役割を果たします。",
                 "service3-title": "技術コンサルティング",
@@ -241,10 +241,10 @@
                 "brands-title": "主なブランドと部品",
                 "brand1": "三菱 PLC", "brand2": "サーボモータ", "brand3": "インバータ", "brand4": "センサ", "brand5": "空気圧機器", "brand6": "HMI", "brand7": "産業用PC",
                 "shop-title": "Online Shop",
-                "shop-p": "様々な自動化部品をネイバース마ートストアで便利にご覧いただけます。",
-                "shop-banner": "GEN SYSTEM ネ이버スマートストアを訪れる →",
+                "shop-p": "様々な自動化部品をネイバースマートストアで便利にご覧いただけます。",
+                "shop-banner": "GEN SYSTEM ネイバースマートストアを訪れる →",
                 "contact-title": "Contact Us",
-                "label-email": "メール:", "label-phone": "電話番号:", "label-kakao": "カカオトーク:", "label-address": "住所:",
+                "label-email": "メール:", "label-phone": "電話番号:", "label-kakao": "カ카オトーク:", "label-address": "住所:",
                 "link-kakao": "オープンチャットに移動",
                 "val-address": "慶尚北道亀尾市3工団1路302-7 工具商街8棟217号"
             },
@@ -307,7 +307,9 @@
 
             // 언어 선택 후 메뉴 닫기
             const langMenu = document.getElementById('lang-menu');
-            langMenu.classList.remove('show');
+            if (langMenu) {
+                langMenu.classList.remove('show');
+            }
 
             // 선택 언어 저장
             localStorage.setItem('preferred-lang', lang);
@@ -317,7 +319,9 @@
         function toggleLangMenu(event) {
             event.stopPropagation();
             const langMenu = document.getElementById('lang-menu');
-            langMenu.classList.toggle('show');
+            if (langMenu) {
+                langMenu.classList.toggle('show');
+            }
         }
 
         // 외부 클릭 시 메뉴 닫기
@@ -337,10 +341,12 @@
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                this.classList.toggle('active');
-            });
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
 
             // 스크롤 시 메뉴 닫기 및 부드러운 이동
             const scrollLinks = document.querySelectorAll('a[href^="#"]');
@@ -348,9 +354,8 @@
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
                     
-                    // 모바일 메뉴 닫기
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
+                    if (navLinks) navLinks.classList.remove('active');
+                    if (menuToggle) menuToggle.classList.remove('active');
 
                     if (href && href !== '#' && href.startsWith('#')) {
                         const targetElement = document.querySelector(href);
