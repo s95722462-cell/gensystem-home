@@ -30,100 +30,106 @@
                     <span>GEN SYSTEM</span>
                 </a>
             </h1>
+            <div class="lang-switcher">
+                <button onclick="setLanguage('ko')" class="lang-btn active">KO</button>
+                <button onclick="setLanguage('en')" class="lang-btn">EN</button>
+                <button onclick="setLanguage('ja')" class="lang-btn">JA</button>
+                <button onclick="setLanguage('zh')" class="lang-btn">CN</button>
+            </div>
             <button class="menu-toggle" aria-label="메뉴 열기">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
             <ul class="nav-links">
-                <li><a href="#about">회사 소개</a></li>
-                <li><a href="#services">서비스</a></li>
-                <li><a href="#shop">스마트스토어</a></li>
-                <li><a href="#contact">문의하기</a></li>
+                <li><a href="#about" data-i18n="nav-about">회사 소개</a></li>
+                <li><a href="#services" data-i18n="nav-services">서비스</a></li>
+                <li><a href="#shop" data-i18n="nav-shop">스마트스토어</a></li>
+                <li><a href="#contact" data-i18n="nav-contact">문의하기</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h2>공장 자동화 부품의 최적 솔루션</h2>
-            <p>자동화 설비 유지보수 경험과 다년간의 무역 실무를 바탕으로 최상의 제품을 공급합니다</p>
+            <h2 data-i18n="hero-title">공장 자동화 부품의 최적 솔루션</h2>
+            <p data-i18n="hero-subtitle">자동화 설비 유지보수 경험과 다년간의 무역 실무를 바탕으로 최상의 제품을 공급합니다</p>
             <div class="hero-btns">
-                <a href="#contact" class="btn">견적 문의</a>
-                <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" class="btn btn-kakao">카카오톡 문의</a>
-                <a href="https://smartstore.naver.com/gensystem" target="_blank" class="btn btn-store">네이버 쇼핑몰</a>
+                <a href="#contact" class="btn" data-i18n="btn-contact">견적 문의</a>
+                <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" class="btn btn-kakao" data-i18n="btn-kakao">카카오톡 문의</a>
+                <a href="https://smartstore.naver.com/gensystem" target="_blank" class="btn btn-store" data-i18n="btn-shop">네이버 쇼핑몰</a>
             </div>
         </div>
     </section>
 
     <main class="container">
         <section id="about">
-            <h2>About GEN SYSTEM</h2>
+            <h2 data-i18n="about-title">About GEN SYSTEM</h2>
             <div class="about-content">
-                <p>GEN SYSTEM은 단순한 무역을 넘어, <strong>현장 기술 경험</strong>을 바탕으로 고객사에게 가장 적합한 자동화 부품을 제안합니다.</p>
+                <p data-i18n="about-p">GEN SYSTEM은 단순한 무역을 넘어, <strong>현장 기술 경험</strong>을 바탕으로 고객사에게 가장 적합한 자동화 부품을 제안합니다.</p>
                 <ul>
-                    <li><strong>기술 전문성:</strong> 자동화 설비 유지보수 업무 수행 및 현장 실무 경험</li>
-                    <li><strong>무역 노하우:</strong> 무역 회사 다년간 근무를 통한 글로벌 소싱 및 수출입 실무 숙달</li>
-                    <li><strong>글로벌 네트워크:</strong> 해외 우수 제품 수입 및 국내 부품의 해외 수출 최적화</li>
+                    <li data-i18n="about-li1"><strong>기술 전문성:</strong> 자동화 설비 유지보수 업무 수행 및 현장 실무 경험</li>
+                    <li data-i18n="about-li2"><strong>무역 노하우:</strong> 무역 회사 다년간 근무를 통한 글로벌 소싱 및 수출입 실무 숙달</li>
+                    <li data-i18n="about-li3"><strong>글로벌 네트워크:</strong> 해외 우수 제품 수입 및 국내 부품의 해외 수출 최적화</li>
                 </ul>
             </div>
         </section>
 
         <section id="services">
-            <h2>Our Services</h2>
+            <h2 data-i18n="services-title">Our Services</h2>
             <div class="service-cards">
                 <div class="card">
                     <div class="card-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                     </div>
-                    <h3>자동화 부품 수입/공급</h3>
-                    <p>전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다.</p>
+                    <h3 data-i18n="service1-title">자동화 부품 수입/공급</h3>
+                    <p data-i18n="service1-p">전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     </div>
-                    <h3>글로벌 수출입 대행</h3>
-                    <p>해외 제품의 국내 수입은 물론, 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다.</p>
+                    <h3 data-i18n="service2-title">글로벌 수출입 대행</h3>
+                    <p data-i18n="service2-p">해외 제품의 국내 수입은 물론, 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
                     </div>
-                    <h3>기술 컨설팅</h3>
-                    <p>설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다.</p>
+                    <h3 data-i18n="service3-title">기술 컨설팅</h3>
+                    <p data-i18n="service3-p">설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다.</p>
                 </div>
             </div>
         </section>
 
         <section id="brands" class="brands-section">
-            <h2>Key Brands & Parts</h2>
+            <h2 data-i18n="brands-title">Key Brands & Parts</h2>
             <div class="brand-tags">
-                <span>Mitsubishi PLC</span>
-                <span>Servo Motor</span>
-                <span>Inverter</span>
-                <span>Sensor</span>
-                <span>Pneumatics</span>
-                <span>HMI</span>
-                <span>Industrial PC</span>
+                <span data-i18n="brand1">Mitsubishi PLC</span>
+                <span data-i18n="brand2">Servo Motor</span>
+                <span data-i18n="brand3">Inverter</span>
+                <span data-i18n="brand4">Sensor</span>
+                <span data-i18n="brand5">Pneumatics</span>
+                <span data-i18n="brand6">HMI</span>
+                <span data-i18n="brand7">Industrial PC</span>
             </div>
         </section>
 
         <section id="shop" class="shop-section">
-            <h2>Online Shop</h2>
-            <p>다양한 자동화 부품을 네이버 스마트스토어에서 편리하게 만나보세요.</p>
+            <h2 data-i18n="shop-title">Online Shop</h2>
+            <p data-i18n="shop-p">다양한 자동화 부품을 네이버 스마트스토어에서 편리하게 만나보세요.</p>
             <a href="https://smartstore.naver.com/gensystem" target="_blank" class="store-banner">
-                <span>GEN SYSTEM 네이버 스마트스토어 방문하기 &rarr;</span>
+                <span data-i18n="shop-banner">GEN SYSTEM 네이버 스마트스토어 방문하기 &rarr;</span>
             </a>
         </section>
 
         <section id="contact">
-            <h2>Contact Us</h2>
+            <h2 data-i18n="contact-title">Contact Us</h2>
             <div class="contact-info">
-                <p><strong>이메일:</strong> <a href="mailto:gen0910@hotmail.com">gen0910@hotmail.com</a></p>
-                <p><strong>전화번호:</strong> <a href="tel:054-475-9600">054-475-9600</a></p>
-                <p><strong>카카오톡:</strong> <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank">오픈채팅 바로가기</a></p>
-                <p><strong>주소:</strong> <a href="https://map.naver.com/v5/search/경북 구미시 3공단 1로 302-7 공구상가 8동 217호" target="_blank" class="address-link">경북 구미시 3공단 1로 302-7 공구상가 8동 217호</a></p>
+                <p><strong data-i18n="label-email">이메일:</strong> <a href="mailto:gen0910@hotmail.com">gen0910@hotmail.com</a></p>
+                <p><strong data-i18n="label-phone">전화번호:</strong> <a href="tel:054-475-9600">054-475-9600</a></p>
+                <p><strong data-i18n="label-kakao">카카오톡:</strong> <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" data-i18n="link-kakao">오픈채팅 바로가기</a></p>
+                <p><strong data-i18n="label-address">주소:</strong> <a href="https://map.naver.com/v5/search/경북 구미시 3공단 1로 302-7 공구상가 8동 217호" target="_blank" class="address-link" data-i18n="val-address">경북 구미시 3공단 1로 302-7 공구상가 8동 217호</a></p>
             </div>
         </section>
     </main>
@@ -138,7 +144,163 @@
     </footer>
 
     <script>
+        const translations = {
+            ko: {
+                "nav-about": "회사 소개",
+                "nav-services": "서비스",
+                "nav-shop": "스마트스토어",
+                "nav-contact": "문의하기",
+                "hero-title": "공장 자동화 부품의 최적 솔루션",
+                "hero-subtitle": "자동화 설비 유지보수 경험과 다년간의 무역 실무를 바탕으로 최상의 제품을 공급합니다",
+                "btn-contact": "견적 문의",
+                "btn-kakao": "카카오톡 문의",
+                "btn-shop": "네이버 쇼핑몰",
+                "about-title": "About GEN SYSTEM",
+                "about-p": "GEN SYSTEM은 단순한 무역을 넘어, <strong>현장 기술 경험</strong>을 바탕으로 고객사에게 가장 적합한 자동화 부품을 제안합니다.",
+                "about-li1": "<strong>기술 전문성:</strong> 자동화 설비 유지보수 업무 수행 및 현장 실무 경험",
+                "about-li2": "<strong>무역 노하우:</strong> 무역 회사 다년간 근무를 통한 글로벌 소싱 및 수출입 실무 숙달",
+                "about-li3": "<strong>글로벌 네트워크:</strong> 해외 우수 제품 수입 및 국내 부품의 해외 수출 최적화",
+                "services-title": "Our Services",
+                "service1-title": "자동화 부품 수입/공급",
+                "service1-p": "전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다.",
+                "service2-title": "글로벌 수출입 대행",
+                "service2-p": "해외 제품의 국내 수입은 물론, 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다.",
+                "service3-title": "기술 컨설팅",
+                "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다.",
+                "brands-title": "Key Brands & Parts",
+                "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
+                "shop-title": "Online Shop",
+                "shop-p": "다양한 자동화 부품을 네이버 스마트스토어에서 편리하게 만나보세요.",
+                "shop-banner": "GEN SYSTEM 네이버 스마트스토어 방문하기 →",
+                "contact-title": "Contact Us",
+                "label-email": "이메일:", "label-phone": "전화번호:", "label-kakao": "카카오톡:", "label-address": "주소:",
+                "link-kakao": "오픈채팅 바로가기",
+                "val-address": "경북 구미시 3공단 1로 302-7 공구상가 8동 217호"
+            },
+            en: {
+                "nav-about": "About",
+                "nav-services": "Services",
+                "nav-shop": "Shop",
+                "nav-contact": "Contact",
+                "hero-title": "Optimal Solutions for Factory Automation Parts",
+                "hero-subtitle": "We provide the best products based on automation equipment maintenance experience and years of trade practice",
+                "btn-contact": "Inquiry",
+                "btn-kakao": "KakaoTalk",
+                "btn-shop": "Naver Shop",
+                "about-title": "About GEN SYSTEM",
+                "about-p": "Beyond simple trade, GEN SYSTEM proposes the most suitable automation parts to customers based on field technical experience.",
+                "about-li1": "<strong>Technical Expertise:</strong> Automation equipment maintenance and on-site experience",
+                "about-li2": "<strong>Trade Know-how:</strong> Global sourcing and import/export expertise through years of experience in trade companies",
+                "about-li3": "<strong>Global Network:</strong> Optimized import of excellent overseas products and export of domestic parts",
+                "services-title": "Our Services",
+                "service1-title": "Import/Supply of Automation Parts",
+                "service1-p": "We discover competitive automation parts worldwide and supply them quickly to domestic industrial sites.",
+                "service2-title": "Global Import/Export Agency",
+                "service2-p": "We serve as a bridge connecting domestic products to overseas markets as well as importing overseas products.",
+                "service3-title": "Technical Consulting",
+                "service3-p": "We provide technical advice and selection of the most suitable parts for equipment based on maintenance experience.",
+                "brands-title": "Key Brands & Parts",
+                "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
+                "shop-title": "Online Shop",
+                "shop-p": "Conveniently find various automation parts on Naver Smart Store.",
+                "shop-banner": "Visit GEN SYSTEM Naver Smart Store →",
+                "contact-title": "Contact Us",
+                "label-email": "Email:", "label-phone": "Phone:", "label-kakao": "KakaoTalk:", "label-address": "Address:",
+                "link-kakao": "Go to Open Chat",
+                "val-address": "Room 217, Bldg 8, Industrial Complex, 302-7, 3Gongdan 1-ro, Gumi-si, Gyeongbuk, Korea"
+            },
+            ja: {
+                "nav-about": "会社紹介",
+                "nav-services": "サービス",
+                "nav-shop": "ショップ",
+                "nav-contact": "お問い合わせ",
+                "hero-title": "工場自動化部品の最適ソリューション",
+                "hero-subtitle": "自動化設備のメンテナンス経験と長年の貿易実務に基づき、最高の製品を供給します",
+                "btn-contact": "見積依頼",
+                "btn-kakao": "カカオトーク",
+                "btn-shop": "ネイバーショップ",
+                "about-title": "About GEN SYSTEM",
+                "about-p": "GEN SYSTEMは単なる貿易を超え、現場の技術経験をもとに顧客に最適な自動化部品を提案します。",
+                "about-li1": "<strong>技術専門性:</strong> 自動化設備のメンテナンス業務遂行および現場実地経験",
+                "about-li2": "<strong>貿易ノウハウ:</strong> 貿易会社での長年勤務を通じたグローバルソーシングおよび輸出入実務の習熟",
+                "about-li3": "<strong>グローバルネットワーク:</strong> 海外の優秀な製品の輸入および国内部品の海外輸出の最適化",
+                "services-title": "Our Services",
+                "service1-title": "自動化部品の輸入/供給",
+                "service1-p": "全世界の競争力のある自動化部品を発掘し、国内の産業現場に迅速に供給します。",
+                "service2-title": "グローバル輸出入代行",
+                "service2-p": "海外製品の国内輸入はもちろん、優れた国内製品を海外市場につなげる架け橋の役割を果たします。",
+                "service3-title": "技術コンサルティング",
+                "service3-p": "メンテナンス経験に基づき、装置に最適な部品選定および技術的な助言を提供します。",
+                "brands-title": "主なブランドと部品",
+                "brand1": "三菱 PLC", "brand2": "サーボモータ", "brand3": "インバータ", "brand4": "センサ", "brand5": "空気圧機器", "brand6": "HMI", "brand7": "産業用PC",
+                "shop-title": "Online Shop",
+                "shop-p": "様々な自動化部品をネイバースマートストアで便利にご覧いただけます。",
+                "shop-banner": "GEN SYSTEM ネ이バースマートストアを訪れる →",
+                "contact-title": "Contact Us",
+                "label-email": "メール:", "label-phone": "電話番号:", "label-kakao": "カカオトーク:", "label-address": "住所:",
+                "link-kakao": "オープンチャットに移動",
+                "val-address": "慶尚北道亀尾市3工団1路302-7 工具商街8棟217号"
+            },
+            zh: {
+                "nav-about": "公司介绍",
+                "nav-services": "服务",
+                "nav-shop": "商店",
+                "nav-contact": "联系我们",
+                "hero-title": "工厂自动化零件的最佳解决方案",
+                "hero-subtitle": "凭借自动化设备维护经验和多年的贸易实务，提供最优质的产品",
+                "btn-contact": "询价",
+                "btn-kakao": "KakaoTalk",
+                "btn-shop": "Naver 商店",
+                "about-title": "关于 GEN SYSTEM",
+                "about-p": "GEN SYSTEM 不仅仅是贸易，更凭借现场技术经验，为客户提供最合适的自动化零件。",
+                "about-li1": "<strong>技术专业性:</strong> 自动化设备维护业务及现场实践经验",
+                "about-li2": "<strong>贸易知识:</strong> 多年贸易公司经验，精通全球采购及进出口实务",
+                "about-li3": "<strong>全球网络:</strong> 优化海外优质产品进口及国内零件海外出口",
+                "services-title": "我们的服务",
+                "service1-title": "自动化零件进口/供应",
+                "service1-p": "发掘全球具有竞争力的自动化零件，迅速供应给国内工业现场。",
+                "service2-title": "全球进出口代理",
+                "service2-p": "不仅进口海外产品，还作为桥梁将国内优秀产品推向海外市场。",
+                "service3-title": "技术咨询",
+                "service3-p": "凭借设备维护经验，提供最合适的零件选型及技术建议。",
+                "brands-title": "核心品牌与零件",
+                "brand1": "三菱 PLC", "brand2": "伺服电机", "brand3": "变频器", "brand4": "传感器", "brand5": "气动元件", "brand6": "人机界面", "brand7": "工业电脑",
+                "shop-title": "网上商店",
+                "shop-p": "在 Naver Smart Store 轻松选购各种自动化零件。",
+                "shop-banner": "访问 GEN SYSTEM Naver Smart Store →",
+                "contact-title": "联系我们",
+                "label-email": "邮箱:", "label-phone": "电话:", "label-kakao": "KakaoTalk:", "label-address": "地址:",
+                "link-kakao": "前往公开聊天室",
+                "val-address": "庆尚北道龟尾市3工团1路302-7 工具商街8栋217号"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // 버튼 활성화 상태 변경
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(`'${lang}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // 선택 언어 저장
+            localStorage.setItem('preferred-lang', lang);
+            document.documentElement.lang = lang;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // 저장된 언어 불러오기 (없으면 한국어)
+            const savedLang = localStorage.getItem('preferred-lang') || 'ko';
+            setLanguage(savedLang);
+
             // 모바일 메뉴 토글
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
@@ -147,6 +309,10 @@
                 navLinks.classList.toggle('active');
                 this.classList.toggle('active');
             });
+            
+            // (기존 스크롤 스크립트 생략 - 유지됨)
+        });
+    </script>
 
             // 스크롤 시 메뉴 닫기 및 부드러운 이동
             const scrollLinks = document.querySelectorAll('a[href^="#"]');
