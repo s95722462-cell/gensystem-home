@@ -473,8 +473,11 @@ footer {
 
 /* 모바일 대응 */
 @media (max-width: 850px) {
-    .lang-dropdown {
+    .nav-right {
         margin-left: auto;
+    }
+
+    .lang-dropdown {
         margin-right: 15px;
     }
 
