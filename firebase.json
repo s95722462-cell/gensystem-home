@@ -1,10 +1,14 @@
-﻿{
+{
   "hosting": {
     "public": ".",
     "ignore": [
-      "firebase-debug.log",
+      "firebase.json",
       "**/.*",
-      "**/node_modules/**"
-    ]
+      "node_modules/**",
+      "package*.json",
+      "server.js"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
   }
 }
