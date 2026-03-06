@@ -595,6 +595,7 @@ footer {
         min-width: 0; /* PC 모드에서의 가로 길이 고정을 해제 */
         padding: 0;
         border-radius: 50%;
+        justify-content: center; /* 아이콘 중앙 정렬 */
     }
 
     .float-label {
