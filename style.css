@@ -1,55 +1,57 @@
 :root {
-    --primary-color: #0a2b4c; /* Deep Blue */
-    --secondary-color: #f2f2f2; /* Light Gray */
-    --accent-color: #4a90e2; /* Bright Blue */
+    --primary-color: #0056b3;
+    --secondary-color: #00a82d; /* 네이버 스타일 초록색 */
     --text-color: #333;
-    --white-color: #fff;
+    --light-bg: #f8f9fa;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
     color: var(--text-color);
-    background-color: var(--white-color);
+    scroll-behavior: smooth;
 }
 
 .container {
-    max-width: 1100px;
-    margin: auto;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 0 20px;
-    overflow: hidden;
 }
 
-/* Header & Navigation */
 header {
-    background-color: var(--white-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-header nav {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    height: 70px;
 }
 
 .logo a {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 800;
     color: var(--primary-color);
     text-decoration: none;
+    letter-spacing: -1px;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    margin: 0;
-    padding: 0;
+    list-style: none;
 }
 
 .nav-links li {
@@ -58,129 +60,194 @@ header nav {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--primary-color);
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
-/* Hero Section */
 .hero {
-    background: linear-gradient(rgba(10, 43, 76, 0.8), rgba(10, 43, 76, 0.8)), url('https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-    color: var(--white-color);
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    padding: 120px 20px;
     text-align: center;
 }
 
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .btn {
     display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--white-color);
-    padding: 12px 25px;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: var(--white);
     text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 .btn:hover {
-    background-color: #357abd;
+    background: #004494;
+    transform: translateY(-2px);
 }
 
-/* Main Content Sections */
-main section {
-    padding: 4rem 0;
-    border-bottom: 1px solid var(--secondary-color);
+.btn-store {
+    background: var(--secondary-color);
 }
 
-main section:last-child {
-    border-bottom: none;
+.btn-store:hover {
+    background: #008a25;
 }
 
-main h2 {
+section {
+    padding: 80px 0;
+}
+
+section h2 {
     text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
 }
 
-/* Service Cards */
+section h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+}
+
+.about-content {
+    background: var(--light-bg);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.about-content ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.about-content li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.about-content li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 .service-cards {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .card {
-    background: var(--white-color);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    text-align: center;
-    flex-basis: 31%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border: 1px solid #eee;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .card h3 {
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
-/* Contact Info */
+.shop-section {
+    text-align: center;
+}
+
+.store-banner {
+    display: block;
+    margin-top: 30px;
+    padding: 40px;
+    background: var(--secondary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.store-banner:hover {
+    background: #008a25;
+    transform: scale(1.02);
+}
+
 .contact-info {
     text-align: center;
-    font-size: 1.1rem;
 }
 
-.contact-info p {
-    margin: 0.5rem 0;
-}
-
-/* Footer */
 footer {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background: #222;
+    color: #999;
+    padding: 40px 0;
     text-align: center;
-    padding: 1.5rem 0;
+    font-size: 0.9rem;
 }
 
-/* Responsive */
+/* 모바일 대응 */
 @media (max-width: 768px) {
-    header nav {
-        flex-direction: column;
-    }
-
     .nav-links {
-        margin-top: 1rem;
+        display: none; /* 심플한 모바일을 위해 메뉴 숨김 (필요시 햄버거 메뉴 추가) */
     }
-
-    .hero-content h2 {
-        font-size: 2.2rem;
+    
+    .hero h2 {
+        font-size: 1.8rem;
     }
-
-    .service-cards {
-        flex-direction: column;
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 50px 0;
+    }
+    
+    .about-content {
+        padding: 20px;
     }
 }
