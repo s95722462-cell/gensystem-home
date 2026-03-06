@@ -428,12 +428,13 @@ section h2::after {
 
 .floating-btn {
     height: 55px;
+    min-width: 180px; /* 모든 버튼의 너비를 동일하게 고정 */
     padding: 0 20px;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬하되 여백 유지 */
+    gap: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     transition: var(--transition);
     text-decoration: none;
