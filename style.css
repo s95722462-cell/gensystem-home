@@ -52,10 +52,24 @@ nav {
     letter-spacing: -1px;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
 .lang-dropdown {
     position: relative;
     display: inline-block;
-    margin-left: 20px;
 }
 
 .lang-dropbtn {
