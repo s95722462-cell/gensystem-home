@@ -145,6 +145,8 @@ nav {
     border-radius: 5px;
     font-weight: 600;
     transition: var(--transition);
+    min-width: 160px; /* 모든 버튼의 최소 너비를 통일 */
+    text-align: center; /* 글자를 가운데로 */
 }
 
 .btn:hover {
@@ -409,6 +411,17 @@ footer {
         margin: 15px 0;
     }
     
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        max-width: 280px; /* 너무 길어지지 않게 최대치 제한 */
+    }
+
     .hero h2 {
         font-size: 1.8rem;
     }
