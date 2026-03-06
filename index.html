@@ -30,11 +30,18 @@
                     <span>GEN SYSTEM</span>
                 </a>
             </h1>
-            <div class="lang-switcher">
-                <button onclick="setLanguage('ko')" class="lang-btn active">KO</button>
-                <button onclick="setLanguage('en')" class="lang-btn">EN</button>
-                <button onclick="setLanguage('ja')" class="lang-btn">JA</button>
-                <button onclick="setLanguage('zh')" class="lang-btn">CN</button>
+            <div class="lang-dropdown">
+                <button class="lang-dropbtn">
+                    <svg class="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span id="current-lang-text">한국어</span>
+                    <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-dropdown-content">
+                    <a href="javascript:void(0)" onclick="setLanguage('ko')" id="lang-ko">한국어</a>
+                    <a href="javascript:void(0)" onclick="setLanguage('en')" id="lang-en">English</a>
+                    <a href="javascript:void(0)" onclick="setLanguage('zh')" id="lang-zh">中文</a>
+                    <a href="javascript:void(0)" onclick="setLanguage('ja')" id="lang-ja">日本語</a>
+                </div>
             </div>
             <button class="menu-toggle" aria-label="메뉴 열기">
                 <span class="bar"></span>
@@ -283,13 +290,20 @@
                 }
             });
             
-            // 버튼 활성화 상태 변경
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('onclick').includes(`'${lang}'`)) {
-                    btn.classList.add('active');
-                }
+            // 드롭다운 텍스트 업데이트
+            const langNames = {
+                ko: "한국어",
+                en: "English",
+                ja: "日本語",
+                zh: "中文"
+            };
+            document.getElementById('current-lang-text').innerText = langNames[lang];
+
+            // 드롭다운 활성화 상태(체크 표시 효과) 변경
+            document.querySelectorAll('.lang-dropdown-content a').forEach(a => {
+                a.classList.remove('active');
             });
+            document.getElementById(`lang-${lang}`).classList.add('active');
 
             // 선택 언어 저장
             localStorage.setItem('preferred-lang', lang);

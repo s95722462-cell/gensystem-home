@@ -52,32 +52,86 @@ nav {
     letter-spacing: -1px;
 }
 
-.lang-switcher {
-    display: flex;
-    gap: 5px;
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
     margin-left: 20px;
 }
 
-.lang-btn {
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 3px 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
+.lang-dropbtn {
+    background: var(--white);
+    color: var(--text-color);
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     transition: var(--transition);
-    color: #666;
 }
 
-.lang-btn:hover {
-    background: #e0e0e0;
+.lang-dropbtn:hover {
+    background: var(--light-bg);
 }
 
-.lang-btn.active {
-    background: var(--primary-color);
-    color: var(--white);
-    border-color: var(--primary-color);
+.icon-globe, .icon-chevron {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+}
+
+.lang-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+    min-width: 140px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1002;
+    padding: 5px 0;
+    border: 1px solid #eee;
+    margin-top: 5px;
+}
+
+.lang-dropdown-content a {
+    color: var(--text-color);
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.lang-dropdown-content a:hover {
+    background-color: var(--light-bg);
+}
+
+.lang-dropdown-content a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 체크 표시 아이콘 효과 */
+.lang-dropdown-content a.active::before {
+    content: '✓';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+}
+
+.lang-dropdown-content a.active {
+    padding-left: 28px;
+}
+
+.lang-dropdown:hover .lang-dropdown-content {
+    display: block;
 }
 
 .logo-icon {
@@ -402,7 +456,7 @@ footer {
 
 /* 모바일 대응 */
 @media (max-width: 850px) {
-    .lang-switcher {
+    .lang-dropdown {
         margin-left: auto;
         margin-right: 15px;
     }
