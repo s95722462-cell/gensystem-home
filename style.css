@@ -55,16 +55,21 @@ nav {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links li {
     margin-left: 25px;
+}
+
+.lang-nav-item {
+    display: flex;
+    align-items: center;
 }
 
 .lang-dropdown {
@@ -492,7 +497,7 @@ footer {
     }
 
     .lang-dropdown {
-        margin-right: 15px;
+        margin-right: 0;
     }
 
     .menu-toggle {
@@ -522,6 +527,7 @@ footer {
         padding: 20px;
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
         text-align: center;
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -530,8 +536,20 @@ footer {
 
     .nav-links li {
         margin: 15px 0;
+        width: 100%;
     }
-    
+
+    .lang-nav-item {
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .lang-dropdown {
+        width: auto;
+    }
+
     .hero-btns {
         flex-direction: column;
         align-items: center;
