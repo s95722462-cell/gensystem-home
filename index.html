@@ -31,12 +31,12 @@
                 </a>
             </h1>
             <div class="lang-dropdown">
-                <button class="lang-dropbtn">
+                <button class="lang-dropbtn" onclick="toggleLangMenu(event)">
                     <svg class="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     <span id="current-lang-text">한국어</span>
                     <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
-                <div class="lang-dropdown-content">
+                <div class="lang-dropdown-content" id="lang-menu">
                     <a href="javascript:void(0)" onclick="setLanguage('ko')" id="lang-ko">한국어</a>
                     <a href="javascript:void(0)" onclick="setLanguage('en')" id="lang-en">English</a>
                     <a href="javascript:void(0)" onclick="setLanguage('zh')" id="lang-zh">中文</a>
@@ -305,10 +305,28 @@
             });
             document.getElementById(`lang-${lang}`).classList.add('active');
 
+            // 언어 선택 후 메뉴 닫기
+            const langMenu = document.getElementById('lang-menu');
+            langMenu.classList.remove('show');
+
             // 선택 언어 저장
             localStorage.setItem('preferred-lang', lang);
             document.documentElement.lang = lang;
         }
+
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            const langMenu = document.getElementById('lang-menu');
+            langMenu.classList.toggle('show');
+        }
+
+        // 외부 클릭 시 메뉴 닫기
+        window.addEventListener('click', function() {
+            const langMenu = document.getElementById('lang-menu');
+            if (langMenu) {
+                langMenu.classList.remove('show');
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             // 저장된 언어 불러오기 (없으면 한국어)
