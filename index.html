@@ -370,34 +370,40 @@ document.querySelectorAll('.best-badge').forEach(el => {
                 const response = await fetch('/api/best-products');
                 const data = await response.json();
                 
+                if (data.error) {
+                    throw new Error(data.details || data.error);
+                }
+                
                 // 네이버 커머스 API 응답 구조: { contents: [ { originProduct: { ... } }, ... ] }
-                // 또는 바로 배열이 올 수 있음 (캐시된 데이터 형태에 따라)
                 const items = data.contents || (Array.isArray(data) ? data : []);
 
                 if (items && items.length > 0) {
                     productList.innerHTML = '';
                     items.forEach(item => {
                         const product = item.originProduct || item; 
-                        if (!product || !product.id) return;
+                        // 네이버 커머스 API는 id/name 대신 productId/productName을 사용할 수 있음
+                        const productId = product.productId || product.id;
+                        const productName = product.productName || product.name || '상품 정보';
+                        
+                        if (!productId) return;
 
                         const card = document.createElement('a');
                         card.className = 'product-card';
-                        card.href = `https://smartstore.naver.com/gensystem/products/${product.id}`;
+                        card.href = `https://smartstore.naver.com/gensystem/products/${productId}`;
                         card.target = '_blank';
                         
                         const price = product.salePrice ? new Intl.NumberFormat('ko-KR').format(product.salePrice) : '별도문의';
                         const imageUrl = product.representImage ? product.representImage.url : '';
-                        const name = product.name || '상품 정보';
                         const currentLang = localStorage.getItem('preferred-lang') || 'ko';
                         const badgeText = (currentLang === 'ko') ? '베스트' : 'BEST';
 
                         card.innerHTML = `
                             <div class="product-img-wrapper">
                                 <span class="best-badge">${badgeText}</span>
-                                <img src="${imageUrl}" alt="${name}" loading="lazy">
+                                <img src="${imageUrl}" alt="${productName}" loading="lazy">
                             </div>
                             <div class="product-info">
-                                <div class="product-name">${name}</div>
+                                <div class="product-name">${productName}</div>
                                 <div class="product-price">₩${price}</div>
                             </div>
                         `;

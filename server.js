@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const crypto = require('crypto');
 require('dotenv').config();
 
 const app = express();
@@ -18,10 +19,18 @@ let cachedProducts = null;
 let lastFetchTime = 0;
 
 async function getNaverAccessToken() {
+    const timestamp = Date.now();
+    // HMAC-SHA256 서명 생성 (clientId + "_" + timestamp 를 clientSecret으로 서명)
+    const signature = crypto.createHmac('sha256', NAVER_CLIENT_SECRET)
+        .update(`${NAVER_CLIENT_ID}_${timestamp}`)
+        .digest('base64');
+
     const response = await axios.post('https://api.commerce.naver.com/external/v1/oauth2/token', {
         client_id: NAVER_CLIENT_ID,
-        client_secret: NAVER_CLIENT_SECRET,
-        grant_type: 'client_credentials'
+        timestamp: timestamp,
+        client_secret_sign: signature,
+        grant_type: 'client_credentials',
+        type: 'SELF'
     });
     return response.data.access_token;
 }
@@ -37,24 +46,32 @@ app.get('/api/best-products', async (req, res) => {
 
         const token = await getNaverAccessToken();
         
-        // 실제 상품 조회 API 호출 (네이버 커머스 API 문서에 따라 상세 엔드포인트는 조정될 수 있습니다.)
-        // 여기서는 예시로 전체 상품 목록 중 상위 10개를 가져오는 로직을 작성합니다.
-        const productResponse = await axios.get('https://api.commerce.naver.com/external/v1/products/search', {
-            headers: { 'Authorization': `Bearer ${token}` },
-            params: {
-                page: 1,
-                size: 10,
-                sortType: 'REVIEW_COUNT' // 리뷰 많은 순(베스트 대용)
+        // 네이버 커머스 API 상품 검색은 일반적으로 POST 방식을 사용합니다.
+        const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
+            page: 1,
+            size: 10,
+            orderType: 'REGISTRATION_DATE_DESC' // 최신 등록순
+        }, {
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
         });
 
         cachedProducts = productResponse.data;
         lastFetchTime = now;
         
+        console.log('Successfully fetched products from Naver:', JSON.stringify(cachedProducts).substring(0, 100) + '...');
         res.json(cachedProducts);
     } catch (error) {
-        console.error('Error fetching Naver products:', error.response ? error.response.data : error.message);
-        res.status(500).json({ error: 'Failed to fetch products' });
+        console.error('Error fetching Naver products:');
+        if (error.response) {
+            console.error('Status:', error.response.status);
+            console.error('Data:', JSON.stringify(error.response.data));
+        } else {
+            console.error('Message:', error.message);
+        }
+        res.status(500).json({ error: 'Failed to fetch products', details: error.message });
     }
 });
 
