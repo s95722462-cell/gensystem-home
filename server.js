@@ -56,11 +56,12 @@ app.get('/api/best-products', async (req, res) => {
 
         const token = await getNaverAccessToken();
         
-        // 네이버 커머스 API 상품 검색 (최소한의 필수 파라미터 포함)
+        // 네이버 커머스 API 상품 검색 
+        // 400 에러 방지를 위해 규격에 맞는 필드 구성 (전체 상품 검색용)
         const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
             page: 1,
             size: 30,
-            orderType: 'REGISTRATION_DATE_DESC' // 명시적으로 정렬 방식 포함
+            searchType: 'ALL' // 전체 검색 타입 명시
         }, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -84,10 +85,13 @@ app.get('/api/best-products', async (req, res) => {
         lastFetchTime = now;
         res.json(cachedProducts);
     } catch (error) {
-        const errorDetail = error.response ? error.response.data : error.message;
-        console.error('Naver API Detailed Error:', JSON.stringify(errorDetail));
+        let errorDetail = error.message;
+        if (error.response) {
+            // 상세 에러가 있는 경우 이를 텍스트로 변환하여 전달
+            errorDetail = JSON.stringify(error.response.data);
+            console.error('Naver API Detailed Error:', errorDetail);
+        }
         
-        // 에러가 400인 경우 클라이언트에게 더 자세한 정보 전달
         res.status(error.response ? error.response.status : 500).json({ 
             error: 'Failed to fetch products', 
             details: errorDetail 
