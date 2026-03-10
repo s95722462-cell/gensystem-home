@@ -11,8 +11,8 @@ const port = process.env.PORT || 8080;
 app.use(express.static(__dirname));
 
 // 네이버 커머스 API 설정
-const NAVER_CLIENT_ID = process.env.NAVER_CLIENT_ID;
-const NAVER_CLIENT_SECRET = process.env.NAVER_CLIENT_SECRET;
+const NAVER_CLIENT_ID = (process.env.NAVER_CLIENT_ID || '').trim();
+const NAVER_CLIENT_SECRET = (process.env.NAVER_CLIENT_SECRET || '').trim();
 
 // 1시간마다 갱신될 데이터 캐시
 let cachedProducts = null;
@@ -25,6 +25,7 @@ async function getNaverAccessToken() {
         .update(`${NAVER_CLIENT_ID}_${timestamp}`)
         .digest('base64');
 
+    // 토큰 요청 본문을 명확하게 구성
     const response = await axios.post('https://api.commerce.naver.com/external/v1/oauth2/token', {
         client_id: NAVER_CLIENT_ID,
         timestamp: timestamp,
@@ -32,35 +33,34 @@ async function getNaverAccessToken() {
         grant_type: 'client_credentials',
         type: 'SELF'
     });
+    
+    if (!response.data || !response.data.access_token) {
+        throw new Error('Failed to get access token from Naver');
+    }
+    
     return response.data.access_token;
 }
 
 // 주간 베스트 상품을 가져오는 API (캐싱 적용)
 app.get('/api/best-products', async (req, res) => {
     try {
-        // 환경 변수 확인
         if (!NAVER_CLIENT_ID || !NAVER_CLIENT_SECRET) {
-            console.error('Error: NAVER_CLIENT_ID or NAVER_CLIENT_SECRET is missing in environment variables');
-            return res.status(500).json({ 
-                error: 'Server configuration error', 
-                details: 'API credentials are not set in the server environment.' 
-            });
+            console.error('Missing NAVER API credentials');
+            return res.status(500).json({ error: 'Server configuration error' });
         }
 
         const now = Date.now();
-        // 1시간(3600000ms) 이내라면 캐시된 데이터 반환
         if (cachedProducts && (now - lastFetchTime < 3600000)) {
             return res.json(cachedProducts);
         }
 
         const token = await getNaverAccessToken();
         
-        // 네이버 커머스 API 상품 검색
-        // 400 에러를 방지하기 위해 가장 기본적인 필드만 전송해봅니다.
+        // 네이버 커머스 API 상품 검색 (최소한의 필수 파라미터 포함)
         const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
             page: 1,
-            size: 30
-            // orderType은 제외하고 기본값으로 시도 (400 에러 방지용)
+            size: 30,
+            orderType: 'REGISTRATION_DATE_DESC' // 명시적으로 정렬 방식 포함
         }, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -68,17 +68,15 @@ app.get('/api/best-products', async (req, res) => {
             }
         });
 
-        let allProducts = productResponse.data.contents || [];
+        let allProducts = (productResponse.data && productResponse.data.contents) ? productResponse.data.contents : [];
         
-        // 상품 목록 랜덤하게 섞기
         if (allProducts.length > 0) {
+            // 랜덤하게 섞기
             for (let i = allProducts.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
             }
-            // 상위 3개 선택
-            const randomThree = allProducts.slice(0, 3);
-            cachedProducts = { contents: randomThree };
+            cachedProducts = { contents: allProducts.slice(0, 3) };
         } else {
             cachedProducts = { contents: [] };
         }
@@ -86,12 +84,13 @@ app.get('/api/best-products', async (req, res) => {
         lastFetchTime = now;
         res.json(cachedProducts);
     } catch (error) {
-        const errorData = error.response ? error.response.data : error.message;
-        console.error('Naver API Error Details:', JSON.stringify(errorData));
+        const errorDetail = error.response ? error.response.data : error.message;
+        console.error('Naver API Detailed Error:', JSON.stringify(errorDetail));
         
+        // 에러가 400인 경우 클라이언트에게 더 자세한 정보 전달
         res.status(error.response ? error.response.status : 500).json({ 
             error: 'Failed to fetch products', 
-            details: errorData 
+            details: errorDetail 
         });
     }
 });
