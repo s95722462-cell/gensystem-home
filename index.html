@@ -421,7 +421,12 @@ document.querySelectorAll('.best-badge').forEach(el => {
                 }
             } catch (error) {
                 console.error('Error loading products:', error);
-                productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#ff3b30;">상품 정보를 불러오지 못했습니다.</div>';
+                // 상세 에러 메시지를 화면에 표시하여 원인 파악을 돕습니다.
+                const errorMessage = error.message || 'Unknown Error';
+                productList.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#ff3b30;">
+                    상품 정보를 불러오지 못했습니다.<br>
+                    <small style="color: #666; font-size: 0.8em; display: block; margin-top: 10px;">상세 원인: ${errorMessage}</small>
+                </div>`;
             }
         }
 
