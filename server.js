@@ -85,12 +85,22 @@ app.get('/api/best-products', async (req, res) => {
         lastFetchTime = now;
         res.json(cachedProducts);
     } catch (error) {
-        let errorDetail = error.message;
+        console.error('--- Naver API Error Start ---');
+        let errorDetail = 'Unknown server error';
+        
         if (error.response) {
-            // 상세 에러가 있는 경우 이를 텍스트로 변환하여 전달
-            errorDetail = JSON.stringify(error.response.data);
-            console.error('Naver API Detailed Error:', errorDetail);
+            // 서버 응답이 있는 경우 (400, 401, 403 등)
+            errorDetail = typeof error.response.data === 'object' 
+                ? JSON.stringify(error.response.data) 
+                : String(error.response.data);
+            console.error('Status:', error.response.status);
+            console.error('Data:', errorDetail);
+        } else {
+            // 네트워크 에러 등 응답 자체가 없는 경우
+            errorDetail = error.message;
+            console.error('Message:', errorDetail);
         }
+        console.error('--- Naver API Error End ---');
         
         res.status(error.response ? error.response.status : 500).json({ 
             error: 'Failed to fetch products', 
