@@ -20,7 +20,10 @@ let lastFetchTime = 0;
 
 async function getNaverAccessToken() {
     const timestamp = Date.now();
-    // HMAC-SHA256 서명 생성 (clientId + "_" + timestamp 를 clientSecret으로 서명)
+    // 보안을 위해 앞 5자리만 확인용 로그 출력 (실제 운영 시에는 삭제 권장)
+    console.log(`Attempting token request with Client ID starting with: ${NAVER_CLIENT_ID.substring(0, 5)}...`);
+    
+    // HMAC-SHA256 서명 생성
     const signature = crypto.createHmac('sha256', NAVER_CLIENT_SECRET)
         .update(`${NAVER_CLIENT_ID}_${timestamp}`)
         .digest('base64');
