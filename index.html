@@ -116,6 +116,16 @@
             </div>
         </section>
 
+        <!-- 네이버 베스트 상품 섹션 -->
+        <section id="best-products">
+            <div class="container">
+                <h2 data-i18n="best-title">Weekly Best Products</h2>
+                <div id="product-list" class="best-products-grid">
+                    <div class="loading-products" data-i18n="loading-products">상품을 불러오는 중입니다...</div>
+                </div>
+            </div>
+        </section>
+
         <section id="brands" class="brands-section">
             <h2 data-i18n="brands-title">Key Brands & Parts</h2>
             <div class="brand-tags">
@@ -183,6 +193,8 @@
                 "service2-p": "해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다",
                 "service3-title": "기술 컨설팅",
                 "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다",
+                "best-title": "주간 베스트 상품",
+                "loading-products": "상품 정보를 불러오는 중...",
                 "brands-title": "Key Brands & Parts",
                 "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
                 "shop-title": "Online Shop",
@@ -215,6 +227,8 @@
                 "service2-p": "We serve as a bridge connecting domestic products to overseas markets as well as importing overseas products",
                 "service3-title": "Technical Consulting",
                 "service3-p": "We provide technical advice and selection of the most suitable parts for equipment based on maintenance experience",
+                "best-title": "Weekly Best Products",
+                "loading-products": "Loading products...",
                 "brands-title": "Key Brands & Parts",
                 "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
                 "shop-title": "Online Shop",
@@ -247,6 +261,8 @@
                 "service2-p": "해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다",
                 "service3-title": "技術コンサルティング",
                 "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다",
+                "best-title": "週間ベスト商品",
+                "loading-products": "商品を読み込み中...",
                 "brands-title": "主要ブランド・部品",
                 "brand1": "三菱電機 PLC", "brand2": "サーボモータ", "brand3": "インバータ", "brand4": "センサ", "brand5": "空圧機器", "brand6": "HMI", "brand7": "産業용 PC",
                 "shop-title": "Online Shop",
@@ -278,7 +294,9 @@
                 "service2-title": "全球进出口代理",
                 "service2-p": "不仅进口海外产品还作为桥梁将韩国国内优秀产品推向海外市场",
                 "service3-title": "技术咨询",
-                "service3-p": "凭借设备维护经验为设备提供最合适的零件选型及技术建议",
+                "service3-p": "凭借设备维护 experience 为设备提供最合适的零件选型及技术建议",
+                "best-title": "每周最佳商品",
+                "loading-products": "正在加载商品...",
                 "brands-title": "核心品牌与零件",
                 "brand1": "三菱 PLC", "brand2": "伺服电机", "brand3": "变频器", "brand4": "传感器", "brand5": "气动元件", "brand6": "人机界面 (HMI)", "brand7": "工业电脑",
                 "shop-title": "网上商店",
@@ -325,6 +343,11 @@ if (menuToggle) menuToggle.classList.remove('active');
 // 선택 언어 저장
 localStorage.setItem('preferred-lang', lang);
 document.documentElement.lang = lang;
+
+// 선택된 언어에 따라 상품 배지 텍스트 변경
+document.querySelectorAll('.best-badge').forEach(el => {
+    el.innerText = (lang === 'ko') ? '베스트' : 'BEST';
+});
 }
         function toggleLangMenu(event) {
             event.stopPropagation();
@@ -341,9 +364,58 @@ document.documentElement.lang = lang;
             }
         });
 
+        async function loadBestProducts() {
+            const productList = document.getElementById('product-list');
+            try {
+                const response = await fetch('/api/best-products');
+                const data = await response.json();
+                
+                // 네이버 커머스 API 응답 구조: { contents: [ { originProduct: { ... } }, ... ] }
+                // 또는 바로 배열이 올 수 있음 (캐시된 데이터 형태에 따라)
+                const items = data.contents || (Array.isArray(data) ? data : []);
+
+                if (items && items.length > 0) {
+                    productList.innerHTML = '';
+                    items.forEach(item => {
+                        const product = item.originProduct || item; 
+                        if (!product || !product.id) return;
+
+                        const card = document.createElement('a');
+                        card.className = 'product-card';
+                        card.href = `https://smartstore.naver.com/gensystem/products/${product.id}`;
+                        card.target = '_blank';
+                        
+                        const price = product.salePrice ? new Intl.NumberFormat('ko-KR').format(product.salePrice) : '별도문의';
+                        const imageUrl = product.representImage ? product.representImage.url : '';
+                        const name = product.name || '상품 정보';
+                        const currentLang = localStorage.getItem('preferred-lang') || 'ko';
+                        const badgeText = (currentLang === 'ko') ? '베스트' : 'BEST';
+
+                        card.innerHTML = `
+                            <div class="product-img-wrapper">
+                                <span class="best-badge">${badgeText}</span>
+                                <img src="${imageUrl}" alt="${name}" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">${name}</div>
+                                <div class="product-price">₩${price}</div>
+                            </div>
+                        `;
+                        productList.appendChild(card);
+                    });
+                } else {
+                    productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#999;">등록된 베스트 상품이 없습니다.</div>';
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+                productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#ff3b30;">상품 정보를 불러오지 못했습니다.</div>';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('preferred-lang') || 'ko';
             setLanguage(savedLang);
+            loadBestProducts(); // 상품 불러오기 실행
 
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
