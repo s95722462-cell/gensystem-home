@@ -193,7 +193,7 @@
                 "service2-p": "해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다",
                 "service3-title": "기술 컨설팅",
                 "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다",
-                "best-title": "주간 베스트 상품",
+                "best-title": "오늘의 추천 상품",
                 "loading-products": "상품 정보를 불러오는 중...",
                 "brands-title": "Key Brands & Parts",
                 "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
@@ -227,7 +227,7 @@
                 "service2-p": "We serve as a bridge connecting domestic products to overseas markets as well as importing overseas products",
                 "service3-title": "Technical Consulting",
                 "service3-p": "We provide technical advice and selection of the most suitable parts for equipment based on maintenance experience",
-                "best-title": "Weekly Best Products",
+                "best-title": "Recommended Products",
                 "loading-products": "Loading products...",
                 "brands-title": "Key Brands & Parts",
                 "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
@@ -261,7 +261,7 @@
                 "service2-p": "해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다",
                 "service3-title": "技術コンサルティング",
                 "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다",
-                "best-title": "週間ベスト商品",
+                "best-title": "今日のおすすめ商品",
                 "loading-products": "商品を読み込み中...",
                 "brands-title": "主要ブランド・部品",
                 "brand1": "三菱電機 PLC", "brand2": "サーボモータ", "brand3": "インバータ", "brand4": "センサ", "brand5": "空圧機器", "brand6": "HMI", "brand7": "産業용 PC",
@@ -295,7 +295,7 @@
                 "service2-p": "不仅进口海外产品还作为桥梁将韩国国内优秀产品推向海外市场",
                 "service3-title": "技术咨询",
                 "service3-p": "凭借设备维护 experience 为设备提供最合适的零件选型及技术建议",
-                "best-title": "每周最佳商品",
+                "best-title": "今日推荐商品",
                 "loading-products": "正在加载商品...",
                 "brands-title": "核心品牌与零件",
                 "brand1": "三菱 PLC", "brand2": "伺服电机", "brand3": "变频器", "brand4": "传感器", "brand5": "气动元件", "brand6": "人机界面 (HMI)", "brand7": "工业电脑",
@@ -346,7 +346,10 @@ document.documentElement.lang = lang;
 
 // 선택된 언어에 따라 상품 배지 텍스트 변경
 document.querySelectorAll('.best-badge').forEach(el => {
-    el.innerText = (lang === 'ko') ? '베스트' : 'BEST';
+    if (lang === 'ko') el.innerText = '추천';
+    else if (lang === 'en') el.innerText = 'PICK';
+    else if (lang === 'ja') el.innerText = 'おすすめ';
+    else if (lang === 'zh') el.innerText = '推荐';
 });
 }
         function toggleLangMenu(event) {
@@ -395,7 +398,11 @@ document.querySelectorAll('.best-badge').forEach(el => {
                         const price = product.salePrice ? new Intl.NumberFormat('ko-KR').format(product.salePrice) : '별도문의';
                         const imageUrl = product.representImage ? product.representImage.url : '';
                         const currentLang = localStorage.getItem('preferred-lang') || 'ko';
-                        const badgeText = (currentLang === 'ko') ? '베스트' : 'BEST';
+                        
+                        let badgeText = '추천';
+                        if (currentLang === 'en') badgeText = 'PICK';
+                        else if (currentLang === 'ja') badgeText = 'おすすめ';
+                        else if (currentLang === 'zh') badgeText = '推荐';
 
                         card.innerHTML = `
                             <div class="product-img-wrapper">
@@ -410,7 +417,7 @@ document.querySelectorAll('.best-badge').forEach(el => {
                         productList.appendChild(card);
                     });
                 } else {
-                    productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#999;">등록된 베스트 상품이 없습니다.</div>';
+                    productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#999;">상품 정보를 불러오는 중입니다.</div>';
                 }
             } catch (error) {
                 console.error('Error loading products:', error);

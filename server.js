@@ -46,11 +46,11 @@ app.get('/api/best-products', async (req, res) => {
 
         const token = await getNaverAccessToken();
         
-        // 네이버 커머스 API 상품 검색은 일반적으로 POST 방식을 사용합니다.
+        // 네이버 커머스 API 상품 검색 (최신 상품 30개를 가져옴)
         const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
             page: 1,
-            size: 10,
-            orderType: 'REGISTRATION_DATE_DESC' // 최신 등록순
+            size: 30,
+            orderType: 'REGISTRATION_DATE_DESC'
         }, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -58,10 +58,21 @@ app.get('/api/best-products', async (req, res) => {
             }
         });
 
-        cachedProducts = productResponse.data;
+        let allProducts = productResponse.data.contents || [];
+        
+        // 상품 목록 랜덤하게 섞기 (Fisher-Yates Shuffle)
+        for (let i = allProducts.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
+        }
+        
+        // 상위 3개만 선택
+        const randomThree = allProducts.slice(0, 3);
+
+        cachedProducts = { contents: randomThree };
         lastFetchTime = now;
         
-        console.log('Successfully fetched products from Naver:', JSON.stringify(cachedProducts).substring(0, 100) + '...');
+        console.log('Successfully fetched 3 random products from Naver');
         res.json(cachedProducts);
     } catch (error) {
         console.error('Error fetching Naver products:');
