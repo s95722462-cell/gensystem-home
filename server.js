@@ -38,6 +38,15 @@ async function getNaverAccessToken() {
 // 주간 베스트 상품을 가져오는 API (캐싱 적용)
 app.get('/api/best-products', async (req, res) => {
     try {
+        // 환경 변수 확인
+        if (!NAVER_CLIENT_ID || !NAVER_CLIENT_SECRET) {
+            console.error('Error: NAVER_CLIENT_ID or NAVER_CLIENT_SECRET is missing in environment variables');
+            return res.status(500).json({ 
+                error: 'Server configuration error', 
+                details: 'API credentials are not set in the server environment.' 
+            });
+        }
+
         const now = Date.now();
         // 1시간(3600000ms) 이내라면 캐시된 데이터 반환
         if (cachedProducts && (now - lastFetchTime < 3600000)) {
@@ -46,11 +55,12 @@ app.get('/api/best-products', async (req, res) => {
 
         const token = await getNaverAccessToken();
         
-        // 네이버 커머스 API 상품 검색 (최신 상품 30개를 가져옴)
+        // 네이버 커머스 API 상품 검색
+        // 400 에러를 방지하기 위해 가장 기본적인 필드만 전송해봅니다.
         const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
             page: 1,
-            size: 30,
-            orderType: 'REGISTRATION_DATE_DESC'
+            size: 30
+            // orderType은 제외하고 기본값으로 시도 (400 에러 방지용)
         }, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -60,29 +70,29 @@ app.get('/api/best-products', async (req, res) => {
 
         let allProducts = productResponse.data.contents || [];
         
-        // 상품 목록 랜덤하게 섞기 (Fisher-Yates Shuffle)
-        for (let i = allProducts.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
+        // 상품 목록 랜덤하게 섞기
+        if (allProducts.length > 0) {
+            for (let i = allProducts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
+            }
+            // 상위 3개 선택
+            const randomThree = allProducts.slice(0, 3);
+            cachedProducts = { contents: randomThree };
+        } else {
+            cachedProducts = { contents: [] };
         }
-        
-        // 상위 3개만 선택
-        const randomThree = allProducts.slice(0, 3);
 
-        cachedProducts = { contents: randomThree };
         lastFetchTime = now;
-        
-        console.log('Successfully fetched 3 random products from Naver');
         res.json(cachedProducts);
     } catch (error) {
-        console.error('Error fetching Naver products:');
-        if (error.response) {
-            console.error('Status:', error.response.status);
-            console.error('Data:', JSON.stringify(error.response.data));
-        } else {
-            console.error('Message:', error.message);
-        }
-        res.status(500).json({ error: 'Failed to fetch products', details: error.message });
+        const errorData = error.response ? error.response.data : error.message;
+        console.error('Naver API Error Details:', JSON.stringify(errorData));
+        
+        res.status(error.response ? error.response.status : 500).json({ 
+            error: 'Failed to fetch products', 
+            details: errorData 
+        });
     }
 });
 
