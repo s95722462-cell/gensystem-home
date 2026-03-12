@@ -1,5 +1,8 @@
-User-agent: Yeti
-Allow: /
 User-agent: *
 Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://www.gensystem.co.kr/sitemap.xml
 Sitemap: https://gensystem.co.kr/sitemap.xml
