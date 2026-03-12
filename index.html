@@ -369,67 +369,24 @@ document.querySelectorAll('.best-badge').forEach(el => {
 
         async function loadBestProducts() {
             const productList = document.getElementById('product-list');
-            try {
-                const response = await fetch('/api/best-products');
-                const data = await response.json();
-                
-                if (data.error) {
-                    throw new Error(data.details || data.error);
-                }
-                
-                // 네이버 커머스 API 응답 구조: { contents: [ { originProduct: { ... } }, ... ] }
-                const items = data.contents || (Array.isArray(data) ? data : []);
-
-                if (items && items.length > 0) {
-                    productList.innerHTML = '';
-                    items.forEach(item => {
-                        const product = item.originProduct || item; 
-                        // 네이버 커머스 API는 id/name 대신 productId/productName을 사용할 수 있음
-                        const productId = product.productId || product.id;
-                        const productName = product.productName || product.name || '상품 정보';
-                        
-                        if (!productId) return;
-
-                        const card = document.createElement('a');
-                        card.className = 'product-card';
-                        card.href = `https://smartstore.naver.com/gensystem/products/${productId}`;
-                        card.target = '_blank';
-                        
-                        const price = product.salePrice ? new Intl.NumberFormat('ko-KR').format(product.salePrice) : '별도문의';
-                        const imageUrl = product.representImage ? product.representImage.url : '';
-                        const currentLang = localStorage.getItem('preferred-lang') || 'ko';
-                        
-                        let badgeText = '추천';
-                        if (currentLang === 'en') badgeText = 'PICK';
-                        else if (currentLang === 'ja') badgeText = 'おすすめ';
-                        else if (currentLang === 'zh') badgeText = '推荐';
-
-                        card.innerHTML = `
-                            <div class="product-img-wrapper">
-                                <span class="best-badge">${badgeText}</span>
-                                <img src="${imageUrl}" alt="${productName}" loading="lazy">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-name">${productName}</div>
-                                <div class="product-price">₩${price}</div>
-                            </div>
-                        `;
-                        productList.appendChild(card);
-                    });
-                } else {
-                    productList.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#999;">상품 정보를 불러오는 중입니다.</div>';
-                }
-            } catch (error) {
-                console.error('Error loading products:', error);
-                // 상세 에러 메시지를 화면에 표시하여 원인 파악을 돕습니다.
-                const errorMessage = error.message || 'Unknown Error';
-                productList.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#ff3b30;">
-                    상품 정보를 불러오지 못했습니다.<br>
-                    <small style="color: #666; font-size: 0.8em; display: block; margin-top: 10px; word-break: break-all;">
-                        원인: ${errorMessage}
-                    </small>
-                </div>`;
-            }
+            
+            // API 오류 대응: 상품 목록을 준비된 이미지로 대체
+            productList.innerHTML = `
+                <div class="product-image-container" style="grid-column: 1 / -1; width: 100%; text-align: center; padding: 10px 0;">
+                    <a href="https://smartstore.naver.com/gensystem" target="_blank" style="display: block; transition: transform 0.2s ease;">
+                        <img src="스마트스토어판매상품.png" alt="Naver Smart Store Products" 
+                             class="responsive-product-img"
+                             style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: box-shadow 0.3s ease;">
+                        <div class="shop-banner-link" style="margin-top: 20px; padding: 12px; background: #f8f9fa; border-radius: 8px; display: inline-block; border: 1px solid #eee;">
+                            <span data-i18n="shop-banner" style="color: #222; font-weight: 600; font-size: 0.95rem;">GEN SYSTEM 네이버 스마트스토어 방문하기 &rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            `;
+            
+            // 이미지가 로드된 후에도 다국어 처리가 되도록 한번 더 호출
+            const savedLang = localStorage.getItem('preferred-lang') || 'ko';
+            setLanguage(savedLang);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
