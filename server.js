@@ -7,6 +7,15 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
+// 네이버 소유 확인 경로 (최우선 순위 배치)
+app.get('/naverb7b93cd74ba876a296f76753c56c8ae2.html', (req, res) => {
+    res.send('naver-site-verification: 1314ba48998cec228c8f88edf30ca93aa6f57a3a');
+});
+
+app.get('/naver533b26b88c3de2abc8529e97b34e574a.html', (req, res) => {
+    res.send('naver-site-verification: 6e9e2420bac3854f6df06ebba63e773f16d66cdf');
+});
+
 // 정적 파일 서빙
 app.use(express.static(__dirname));
 
@@ -110,14 +119,6 @@ app.get('/api/best-products', async (req, res) => {
             details: errorDetail 
         });
     }
-});
-
-app.get('/naverb7b93cd74ba876a296f76753c56c8ae2.html', (req, res) => {
-    res.send('naver-site-verification: 1314ba48998cec228c8f88edf30ca93aa6f57a3a');
-});
-
-app.get('/naver533b26b88c3de2abc8529e97b34e574a.html', (req, res) => {
-    res.send('naver-site-verification: 6e9e2420bac3854f6df06ebba63e773f16d66cdf');
 });
 
 app.get('/robots.txt', (req, res) => {

@@ -28,7 +28,7 @@
         ]
       }
     ],
-    "cleanUrls": true,
+    "cleanUrls": false,
     "trailingSlash": false
   }
 }
