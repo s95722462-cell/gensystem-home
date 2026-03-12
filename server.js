@@ -112,6 +112,10 @@ app.get('/api/best-products', async (req, res) => {
     }
 });
 
+app.get('/naverb7b93cd74ba876a296f76753c56c8ae2.html', (req, res) => {
+    res.send('naver-site-verification: 1314ba48998cec228c8f88edf30ca93aa6f57a3a');
+});
+
 app.get('/robots.txt', (req, res) => {
     res.sendFile(path.join(__dirname, 'robots.txt'));
 });
