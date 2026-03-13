@@ -1,13 +1,13 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "node_modules/**",
-      "package*.json",
-      "server.js"
+      "node_modules/**"
     ],
+    "trailingSlash": false,
+    "cleanUrls": true,
     "headers": [
       {
         "source": "/robots.txt",
@@ -15,20 +15,13 @@
           {
             "key": "Content-Type",
             "value": "text/plain; charset=utf-8"
-          }
-        ]
-      },
-      {
-        "source": "/sitemap.xml",
-        "headers": [
+          },
           {
-            "key": "Content-Type",
-            "value": "application/xml; charset=utf-8"
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
           }
         ]
       }
-    ],
-    "cleanUrls": false,
-    "trailingSlash": false
+    ]
   }
 }

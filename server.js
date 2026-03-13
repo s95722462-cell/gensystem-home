@@ -16,8 +16,8 @@ app.get('/naver533b26b88c3de2abc8529e97b34e574a.html', (req, res) => {
     res.send('naver-site-verification: 6e9e2420bac3854f6df06ebba63e773f16d66cdf');
 });
 
-// 정적 파일 서빙
-app.use(express.static(__dirname));
+// 정적 파일 서빙 - 보안을 위해 public 폴더만 노출
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 네이버 커머스 API 설정
 const NAVER_CLIENT_ID = (process.env.NAVER_CLIENT_ID || '').trim();
@@ -29,15 +29,12 @@ let lastFetchTime = 0;
 
 async function getNaverAccessToken() {
     const timestamp = Date.now();
-    // 보안을 위해 앞 5자리만 확인용 로그 출력 (실제 운영 시에는 삭제 권장)
     console.log(`Attempting token request with Client ID starting with: ${NAVER_CLIENT_ID.substring(0, 5)}...`);
     
-    // HMAC-SHA256 서명 생성
     const signature = crypto.createHmac('sha256', NAVER_CLIENT_SECRET)
         .update(`${NAVER_CLIENT_ID}_${timestamp}`)
         .digest('base64');
 
-    // 토큰 요청 본문을 명확하게 구성
     const response = await axios.post('https://api.commerce.naver.com/external/v1/oauth2/token', {
         client_id: NAVER_CLIENT_ID,
         timestamp: timestamp,
@@ -68,12 +65,10 @@ app.get('/api/best-products', async (req, res) => {
 
         const token = await getNaverAccessToken();
         
-        // 네이버 커머스 API 상품 검색 
-        // 400 에러 방지를 위해 규격에 맞는 필드 구성 (전체 상품 검색용)
         const productResponse = await axios.post('https://api.commerce.naver.com/external/v1/products/search', {
             page: 1,
             size: 30,
-            searchType: 'ALL' // 전체 검색 타입 명시
+            searchType: 'ALL'
         }, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -84,7 +79,6 @@ app.get('/api/best-products', async (req, res) => {
         let allProducts = (productResponse.data && productResponse.data.contents) ? productResponse.data.contents : [];
         
         if (allProducts.length > 0) {
-            // 랜덤하게 섞기
             for (let i = allProducts.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
@@ -99,21 +93,12 @@ app.get('/api/best-products', async (req, res) => {
     } catch (error) {
         console.error('--- Naver API Error Start ---');
         let errorDetail = 'Unknown server error';
-        
         if (error.response) {
-            // 서버 응답이 있는 경우 (400, 401, 403 등)
-            errorDetail = typeof error.response.data === 'object' 
-                ? JSON.stringify(error.response.data) 
-                : String(error.response.data);
-            console.error('Status:', error.response.status);
-            console.error('Data:', errorDetail);
+            errorDetail = typeof error.response.data === 'object' ? JSON.stringify(error.response.data) : String(error.response.data);
         } else {
-            // 네트워크 에러 등 응답 자체가 없는 경우
             errorDetail = error.message;
-            console.error('Message:', errorDetail);
         }
         console.error('--- Naver API Error End ---');
-        
         res.status(error.response ? error.response.status : 500).json({ 
             error: 'Failed to fetch products', 
             details: errorDetail 
@@ -121,16 +106,17 @@ app.get('/api/best-products', async (req, res) => {
     }
 });
 
+// 명시적으로 robots.txt와 sitemap.xml을 public 폴더에서 서빙
 app.get('/robots.txt', (req, res) => {
-    res.sendFile(path.join(__dirname, 'robots.txt'));
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
 });
 
 app.get('/sitemap.xml', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sitemap.xml'));
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port, () => {
