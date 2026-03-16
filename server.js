@@ -7,7 +7,17 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// 정적 파일 서빙 - public 폴더 내의 파일들(naver 소유확인 포함) 자동 서빙
+// 네이버 로봇 및 검색엔진 최적화를 위해 robots.txt와 sitemap.xml 최우선 서빙
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
+});
+
+app.get('/sitemap.xml', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+
+// 정적 파일 서빙 (public 폴더 내의 파일들 자동 서빙)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 네이버 커머스 API 설정
@@ -62,7 +72,6 @@ app.get('/api/best-products', async (req, res) => {
         let allProducts = (productResponse.data && productResponse.data.contents) ? productResponse.data.contents : [];
         
         if (allProducts.length > 0) {
-            // Shuffle
             for (let i = allProducts.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
@@ -80,12 +89,6 @@ app.get('/api/best-products', async (req, res) => {
             error: 'Failed to fetch products'
         });
     }
-});
-
-// robots.txt 직접 생성 (동적 주소 반영 등 확장성 대비)
-app.get('/robots.txt', (req, res) => {
-    res.type('text/plain');
-    res.send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
 });
 
 // 나머지 모든 경로는 index.html로 (SPA 방식)
