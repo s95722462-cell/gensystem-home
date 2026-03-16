@@ -7,15 +7,17 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// [SEO 최우선] 네이버 및 모든 로봇에게 robots.txt 즉시 응답
-app.get('/robots.txt', (req, res) => {
-    res.type('text/plain');
-    res.status(200).send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
-});
-
-// sitemap.xml 직접 전송
-app.get('/sitemap.xml', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+// [최우선 미들웨어] 어떤 경로보다 먼저 robots.txt와 sitemap.xml을 처리
+app.use((req, res, next) => {
+    if (req.url === '/robots.txt') {
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        return res.status(200).send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
+    }
+    if (req.url === '/sitemap.xml') {
+        res.set('Content-Type', 'application/xml; charset=utf-8');
+        return res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+    }
+    next();
 });
 
 // 정적 파일 서빙
