@@ -106,13 +106,22 @@ app.get('/api/best-products', async (req, res) => {
     }
 });
 
-// 명시적으로 robots.txt와 sitemap.xml을 public 폴더에서 서빙
+// 명시적으로 robots.txt와 sitemap.xml 응답 (경로 문제 해결을 위해 직접 지정)
 app.get('/robots.txt', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+    res.type('text/plain');
+    res.send(`User-agent: *
+Allow: /
+
+Sitemap: https://www.gensystem.co.kr/sitemap.xml`);
 });
 
 app.get('/sitemap.xml', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'), (err) => {
+        if (err) {
+            console.error('Sitemap file not found:', err);
+            res.status(404).send('Sitemap not found');
+        }
+    });
 });
 
 app.get('*', (req, res) => {
