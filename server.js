@@ -7,15 +7,20 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// 정적 파일 서빙을 최우선 배치 (robots.txt, sitemap.xml 포함)
-app.use(express.static(path.join(__dirname, 'public'), {
-    maxAge: '1h',
-    setHeaders: (res, path) => {
-        if (path.endsWith('robots.txt')) {
-            res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-        }
-    }
-}));
+// [NUCLEAR OPTION] 네이버 로봇을 위해 파일 시스템을 거치지 않고 메모리에서 직접 응답
+app.get('/robots.txt', (req, res) => {
+    res.header('Content-Type', 'text/plain; charset=utf-8');
+    res.send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
+});
+
+// sitemap.xml도 물리적 파일 대신 직접 경로 지정하여 전송
+app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml; charset=utf-8');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+
+// 정적 파일 서빙
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 네이버 커머스 API 설정
 const NAVER_CLIENT_ID = (process.env.NAVER_CLIENT_ID || '').trim();
