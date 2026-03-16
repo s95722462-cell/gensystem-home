@@ -7,15 +7,14 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// [NUCLEAR OPTION] 네이버 로봇을 위해 파일 시스템을 거치지 않고 메모리에서 직접 응답
+// [SEO 최우선] 네이버 및 모든 로봇에게 robots.txt 즉시 응답
 app.get('/robots.txt', (req, res) => {
-    res.header('Content-Type', 'text/plain; charset=utf-8');
-    res.send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
+    res.type('text/plain');
+    res.status(200).send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
 });
 
-// sitemap.xml도 물리적 파일 대신 직접 경로 지정하여 전송
+// sitemap.xml 직접 전송
 app.get('/sitemap.xml', (req, res) => {
-    res.header('Content-Type', 'application/xml; charset=utf-8');
     res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
 
