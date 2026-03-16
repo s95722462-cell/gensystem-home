@@ -7,17 +7,25 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// [최우선 미들웨어] 어떤 경로보다 먼저 robots.txt와 sitemap.xml을 처리
-app.use((req, res, next) => {
-    if (req.url === '/robots.txt') {
-        res.set('Content-Type', 'text/plain; charset=utf-8');
-        return res.status(200).send('User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml');
+// [FINAL SEO FIX] 네이버 로봇을 위한 강력한 robots.txt 서빙
+// HEAD 요청과 GET 요청 모두에 대해 즉각 응답
+app.all('/robots.txt', (req, res) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+        return res.status(405).end();
     }
-    if (req.url === '/sitemap.xml') {
-        res.set('Content-Type', 'application/xml; charset=utf-8');
-        return res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
-    }
-    next();
+    const content = 'User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml\n# Updated: 2026-03-16 11:30 KST';
+    res.set({
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+    });
+    res.status(200).send(content);
+});
+
+// sitemap.xml 서빙
+app.get('/sitemap.xml', (req, res) => {
+    res.set('Content-Type', 'application/xml; charset=utf-8');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
 
 // 정적 파일 서빙
