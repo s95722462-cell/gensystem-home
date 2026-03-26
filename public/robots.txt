@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://gensystem.co.kr/sitemap.xml
-# Updated: 2026-03-26 15:00 KST
+Sitemap: https://www.gensystem.co.kr/sitemap.xml
+# Updated: 2026-03-26 21:10 KST
