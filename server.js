@@ -8,18 +8,16 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // [FINAL SEO FIX] 네이버 로봇을 위한 강력한 robots.txt 서빙
-// HEAD 요청과 GET 요청 모두에 대해 즉각 응답
 app.all('/robots.txt', (req, res) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') {
         return res.status(405).end();
     }
-    const content = 'User-agent: *\nAllow: /\n\nSitemap: https://www.gensystem.co.kr/sitemap.xml\n# Updated: 2026-03-16 11:30 KST';
     res.set({
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache'
     });
-    res.status(200).send(content);
+    res.status(200).sendFile(path.join(__dirname, 'public', 'robots.txt'));
 });
 
 // sitemap.xml 서빙
