@@ -12,12 +12,13 @@ app.all('/robots.txt', (req, res) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') {
         return res.status(405).end();
     }
+    const content = 'User-agent: *\nAllow: /\n\nSitemap: https://gensystem.co.kr/sitemap.xml\nSitemap: https://www.gensystem.co.kr/sitemap.xml\n# Updated: 2026-03-26 21:40 KST (Fixed)';
     res.set({
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache'
     });
-    res.status(200).sendFile(path.join(__dirname, 'public', 'robots.txt'));
+    res.status(200).send(content);
 });
 
 // sitemap.xml 서빙
