@@ -398,12 +398,32 @@ footer {
 }
 
 /* Media Queries */
+.contact-info {
+    text-align: center;
+    background: var(--light-bg);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #000000; /* 글씨색 블랙 */
+    text-decoration: none; /* 파란 줄(밑줄) 제거 */
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
+}
+
 @media (min-width: 769px) {
     .address-link {
         pointer-events: none;
         cursor: default;
-        color: var(--text-color) !important;
-        text-decoration: none !important;
     }
 }
 
