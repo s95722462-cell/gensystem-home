@@ -1,7 +1,5 @@
-User-agent: Yeti
-Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gensystem.co.kr/sitemap.xml
-# Updated: 2026-03-17 11:40 KST
+Sitemap: https://gensystem.co.kr/sitemap.xml
+# Updated: 2026-03-26 15:00 KST
