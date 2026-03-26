@@ -73,6 +73,15 @@ app.get('/api/best-products', async (req, res) => {
     }
 });
 
+// 네이버 소유 확인 파일 서빙 (루트 도메인 및 www 도메인용 모두 대응)
+app.get('/naver*.html', (req, res) => {
+    res.set({
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-cache, no-store, must-revalidate'
+    });
+    res.sendFile(path.join(__dirname, 'public', req.path));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
