@@ -34,6 +34,7 @@
         'c1-b': 'Any supplier BOM is normalised into a standard BOM, then rules generate main-circuit, system-configuration, servo and I/O (32-point table) drawings, a wire list and a marking CSV, exported as DXF and PDF.',
         'c1-r': 'Being rule-based, it works the same way when the machine changes. Tested with data from different machines; a full 26-sheet drawing set for one virtual machine is produced in one run.',
         'alt-phone': 'Remote-control screen of the phone equipment monitor, showing commands rejected because the remote-permit switch was off or the command arrived late',
+        'alt-phone-video': 'Screen recording of the phone equipment monitor: live camera view and servo position updating while it is operated with the stop and run buttons',
         'c2-title': 'Phone equipment monitor · remote control',
         'c2-p': 'Checking equipment status meant walking to the line, and remote buttons raised safety concerns.',
         'c2-b': 'Live PLC data on the phone (Firebase). Remote buttons are wrapped in several safety layers.',
@@ -200,4 +201,21 @@
         var btn = document.getElementById('lang-btn');
         if (btn) btn.addEventListener('click', function () { setLanguage(current === 'en' ? 'ko' : 'en'); });
     });
+})();
+
+/* 휴대폰 화면 녹화: 화면 가까이 오면 그때 내려받고, 보일 때만 재생 (움직임 줄이기 설정이면 자동 재생 안 함) */
+(function () {
+    var vids = document.querySelectorAll('video[data-src]');
+    if (!vids.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function load(v) { if (!v.src) { v.src = v.getAttribute('data-src'); if (reduce) v.controls = true; } }
+    if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { load(v); v.controls = true; }); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) { load(v); if (!reduce) { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); } }
+            else if (!v.paused) { v.pause(); }
+        });
+    }, { rootMargin: '200px 0px', threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
 })();
