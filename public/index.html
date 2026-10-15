@@ -5,288 +5,421 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="naver-site-verification" content="6e9e2420bac3854f6df06ebba63e773f16d66cdf" />
     <meta name="robots" content="index,follow">
-    <meta name="description" content="GEN SYSTEM: 자동화 설비 유지보수 경험을 바탕으로 공장 자동화 부품 수입 및 수출 전문 무역 서비스를 제공합니다">
-    <meta name="keywords" content="겐시스템, GEN SYSTEM, 공장자동화, 무역, 수입대행, 수출대행, 미쓰비시 PLC, 서보모터">
+    <title>겐시스템 (GEN SYSTEM) | 자동화 부품 공급 · 제어 프로그램 개발</title>
+    <meta name="description" content="겐시스템(GEN SYSTEM): 미쓰비시 PLC·서보·인버터·HMI 등 공장 자동화 부품 공급과 수출입 대행, PLC 래더·GOT 화면·서보 튜닝·설비 소프트웨어 개발까지 함께하는 자동화 파트너입니다.">
+    <meta name="keywords" content="겐시스템, GEN SYSTEM, 공장자동화, 자동화 부품, 미쓰비시 PLC, 서보모터, 인버터, GOT, HMI, PLC 프로그램, 래더, 서보 튜닝, 수입대행, 수출대행, 구미">
+    <link rel="canonical" href="https://gensystem.co.kr/">
+    <meta name="theme-color" content="#0b1730">
+    <meta name="color-scheme" content="light dark">
+
     <meta property="og:type" content="website">
-    <meta property="og:title" content="겐시스템 (GEN SYSTEM) 홈페이지">
-    <meta property="og:description" content="미쓰비시 PLC, 서보모터 등 자동화 부품 최적 솔루션 공급">
+    <meta property="og:site_name" content="GEN SYSTEM">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:title" content="겐시스템 (GEN SYSTEM) | 부품 공급부터 제어 프로그램까지">
+    <meta property="og:description" content="미쓰비시 PLC·서보·인버터 등 자동화 부품 공급과 PLC·HMI·서보 제어 개발, 설비 소프트웨어까지.">
     <meta property="og:url" content="https://gensystem.co.kr/">
-    <meta property="og:image" content="/OPENG800400.png?v=9">
-    <title>겐시스템 (GEN SYSTEM) 홈페이지</title>
-    <!-- Favicon 설정 -->
+    <meta property="og:image" content="https://gensystem.co.kr/OPENG800400.png?v=9">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
     <link rel="apple-touch-icon" href="favicon.svg?v=3">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    <link rel="stylesheet" href="style.css?v=2026-10">
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "GEN SYSTEM",
+      "alternateName": "겐시스템",
+      "url": "https://gensystem.co.kr/",
+      "logo": "https://gensystem.co.kr/favicon.svg",
+      "image": "https://gensystem.co.kr/OPENG800400.png",
+      "description": "공장 자동화 부품 공급·수출입 대행과 PLC·HMI·서보 제어 프로그램 및 설비 소프트웨어 개발",
+      "email": "gen0910@hotmail.com",
+      "telephone": "+82-54-475-9600",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3공단 1로 302-7 공구상가 8동 217호",
+        "addressLocality": "구미시",
+        "addressRegion": "경상북도",
+        "addressCountry": "KR"
+      },
+      "sameAs": ["https://smartstore.naver.com/gensystem"],
+      "knowsAbout": ["Factory automation", "Mitsubishi PLC", "Servo tuning", "HMI development", "Import and export of automation parts"]
+    }
+    </script>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <h1 class="logo">
-                <a href="#">
-                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 100 100">
-                        <rect x="10" y="10" width="60" height="60" fill="#ff3b30" />
-                        <rect x="30" y="30" width="60" height="60" fill="#0000aa" />
-                    </svg>
-                    <span>GEN SYSTEM</span>
-                </a>
-            </h1>
-            <div class="nav-right">
-                <button class="menu-toggle" aria-label="메뉴 열기">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+    <a class="skip-link" href="#main" data-i18n="skip">본문 바로가기</a>
+
+    <header class="site-header">
+        <nav class="nav container" aria-label="Main">
+            <a class="logo" href="#top" aria-label="GEN SYSTEM">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+                    <rect x="10" y="10" width="60" height="60" fill="#ff3b30" />
+                    <rect x="30" y="30" width="60" height="60" fill="#1d3bbf" />
+                </svg>
+                <span>GEN SYSTEM</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#business" data-i18n="nav-business">사업 분야</a></li>
+                <li><a href="#cases" data-i18n="nav-cases">기술 사례</a></li>
+                <li><a href="#battery" data-i18n="nav-battery">제조 라인 대응</a></li>
+                <li><a href="#parts" data-i18n="nav-parts">부품·스토어</a></li>
+                <li><a href="#contact" data-i18n="nav-contact">문의</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button type="button" class="lang-btn" id="lang-btn" aria-label="Switch to English">EN</button>
+                <a class="btn btn-sm btn-primary nav-cta" href="mailto:gen0910@hotmail.com?subject=%5BGEN%20SYSTEM%5D%20%EC%83%81%EB%8B%B4%20%EC%9A%94%EC%B2%AD" data-i18n="nav-cta">상담 요청</a>
+                <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav-links">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </button>
-                <ul class="nav-links">
-                    <li><a href="#about" data-i18n="nav-about">회사 소개</a></li>
-                    <li><a href="#services" data-i18n="nav-services">서비스</a></li>
-                    <li><a href="#contact" data-i18n="nav-contact">문의하기</a></li>
-                    <li class="lang-nav-item">
-                        <div class="lang-dropdown">
-                            <button class="lang-dropbtn" onclick="toggleLangMenu(event)">
-                                <svg class="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                                <span id="current-lang-text">한국어</span>
-                                <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="lang-dropdown-content" id="lang-menu">
-                                <a href="javascript:void(0)" onclick="setLanguage('ko')" id="lang-ko">한국어</a>
-                                <a href="javascript:void(0)" onclick="setLanguage('en')" id="lang-en">English</a>
-                                <a href="javascript:void(0)" onclick="setLanguage('zh')" id="lang-zh">中文</a>
-                                <a href="javascript:void(0)" onclick="setLanguage('ja')" id="lang-ja">日本語</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2 data-i18n="hero-title">공장 자동화 부품의 최적 솔루션</h2>
-            <p data-i18n="hero-subtitle">자동화 설비 유지보수 경험과 다년간의 무역 실무를 바탕으로 최상의 제품을 공급합니다</p>
-        </div>
-    </section>
-
-    <main class="container">
-        <section id="about">
-            <h2 data-i18n="about-title">About GEN SYSTEM</h2>
-            <div class="about-content">
-                <p data-i18n="about-p">GEN SYSTEM은 단순한 무역을 넘어 현장 기술 경험을 바탕으로 고객사에게 가장 적합한 자동화 부품을 제안합니다</p>
-                <ul>
-                    <li data-i18n="about-li1"><strong>기술 전문성:</strong> 자동화 설비 유지보수 업무 수행 및 현장 실무 경험</li>
-                    <li data-i18n="about-li2"><strong>무역 노하우:</strong> 무역 회사 다년간 근무를 통한 글로벌 소싱 및 수출입 실무 숙달</li>
-                    <li data-i18n="about-li3"><strong>글로벌 네트워크:</strong> 해외 우수 제품 수입 및 국내 부품의 해외 수출 최적화</li>
+    <main id="main">
+        <!-- HERO -->
+        <section class="hero" id="top">
+            <div class="hero-grid container">
+                <div class="hero-copy">
+                    <p class="eyebrow" data-i18n="hero-eyebrow">공장 자동화 부품 · 제어 개발 · 설비 소프트웨어</p>
+                    <h1 class="hero-title" data-i18n="hero-title">부품 조달부터<br>제어 프로그램까지,<br><span class="hl">설비를 아는 자동화 파트너</span></h1>
+                    <p class="hero-sub" data-i18n="hero-sub">미쓰비시 PLC·서보·인버터·HMI 부품 공급과 해외 소싱, 그리고 PLC 래더·GOT 화면·서보 튜닝·설비 소프트웨어 개발까지. 현장 유지보수에서 시작한 경험으로 라인에 필요한 것을 빠르고 정확하게 준비합니다.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary btn-lg" href="mailto:gen0910@hotmail.com?subject=%5BGEN%20SYSTEM%5D%20%EC%83%81%EB%8B%B4%20%EC%9A%94%EC%B2%AD">
+                            <span data-i18n="cta-consult">상담 요청</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                        <a class="btn btn-ghost btn-lg" href="https://smartstore.naver.com/gensystem" target="_blank" rel="noopener">
+                            <span data-i18n="cta-store">스마트스토어</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <figure class="frame frame-drawing">
+                        <img src="img/wiring-servo.webp" width="1400" height="917" alt="" fetchpriority="high">
+                    </figure>
+                    <figure class="frame frame-hmi">
+                        <img src="img/got-main.webp" width="800" height="600" alt="">
+                    </figure>
+                    <div class="chip-float chip-a"><span class="dot"></span>GX Works2 · MELSEC Q</div>
+                    <div class="chip-float chip-b"><span class="dot dot-accent"></span>MR-J4 / J3 Servo</div>
+                </div>
+            </div>
+            <div class="container">
+                <ul class="facts">
+                    <li class="reveal"><strong>Q Series</strong><span data-i18n="fact1">PLC 래더 개발 (GX Works2)</span></li>
+                    <li class="reveal"><strong>KO · EN · VI</strong><span data-i18n="fact2">3개 언어 전환 GOT 화면</span></li>
+                    <li class="reveal"><strong>DXF · PDF</strong><span data-i18n="fact3">BOM 기반 결선도 자동 출력</span></li>
+                    <li class="reveal"><strong data-i18n="fact4-k">약 0.4초</strong><span data-i18n="fact4">비전 감지→서보 정지 (시험 측정)</span></li>
                 </ul>
             </div>
         </section>
 
-        <section id="services">
-            <h2 data-i18n="services-title">Our Services</h2>
-            <div class="service-cards">
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                    </div>
-                    <h3 data-i18n="service1-title">자동화 부품 수입/공급</h3>
-                    <p data-i18n="service1-p">전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    </div>
-                    <h3 data-i18n="service2-title">글로벌 수출입 대행</h3>
-                    <p data-i18n="service2-p">해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-                    </div>
-                    <h3 data-i18n="service3-title">기술 컨설팅</h3>
-                    <p data-i18n="service3-p">설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다</p>
+        <!-- BUSINESS -->
+        <section class="section" id="business" aria-labelledby="business-title">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="eyebrow" data-i18n="biz-eyebrow">사업 분야</p>
+                    <h2 id="business-title" data-i18n="biz-title">세 가지 일을 한 팀이 이어서 합니다</h2>
+                    <p class="lead" data-i18n="biz-lead">부품을 고르는 사람과 프로그램을 짜는 사람이 같으면, 호환·배선·설정 문제가 미리 걸러집니다.</p>
+                </header>
+
+                <div class="bento">
+                    <article class="tile tile-trade reveal">
+                        <div class="tile-num">01</div>
+                        <h3 data-i18n="p1-title">자동화 부품 무역·조달</h3>
+                        <p class="tile-lead" data-i18n="p1-lead">필요한 부품을, 필요한 때에.</p>
+                        <ul class="check" data-i18n="p1-list">
+                            <li>미쓰비시 PLC·서보·인버터·GOT(HMI)·센서 공급</li>
+                            <li>해외 소싱 및 수입 대행, 국내 부품의 해외 수출</li>
+                            <li>단종 부품 대체 모델 제안과 호환 확인</li>
+                            <li>네이버 스마트스토어 상시 판매</li>
+                        </ul>
+                        <div class="tags" aria-hidden="true"><span>MELSEC</span><span>MELSERVO</span><span>FREQROL</span><span>GOT</span></div>
+                    </article>
+
+                    <article class="tile tile-control reveal">
+                        <div class="tile-num">02</div>
+                        <h3 data-i18n="p2-title">제어 개발</h3>
+                        <p class="tile-lead" data-i18n="p2-lead">PLC부터 화면, 서보, 통신까지.</p>
+                        <ul class="check" data-i18n="p2-list">
+                            <li>PLC 래더 프로그램 (GX Works2, MELSEC Q 시리즈)</li>
+                            <li>GOT HMI 화면 — 다국어 전환, 알람·상태 화면</li>
+                            <li>서보 MR-J4 / MR-J3 설정·튜닝</li>
+                            <li>Ethernet (MC 프로토콜) 데이터 연동</li>
+                            <li>시리얼 통신 — 온도 조절기 등 외부 기기</li>
+                            <li>현장 시운전·디버깅</li>
+                        </ul>
+                    </article>
+
+                    <article class="tile tile-sw reveal">
+                        <div class="tile-num">03</div>
+                        <h3 data-i18n="p3-title">설비 소프트웨어</h3>
+                        <p class="tile-lead" data-i18n="p3-lead">현장에 맞춘 자체 개발 도구.</p>
+                        <ul class="check" data-i18n="p3-list">
+                            <li>결선도·전선 목록 자동 생성</li>
+                            <li>휴대폰 설비 모니터·원격 조작</li>
+                            <li>카메라 비전 감시 (보조 기능)</li>
+                            <li>서보 튜닝 도우미</li>
+                            <li>지점 업무용 ERP (데스크톱 앱)</li>
+                        </ul>
+                    </article>
+
+                    <article class="tile tile-about reveal">
+                        <h3 data-i18n="about-title">현장을 아는 무역, 무역을 아는 기술</h3>
+                        <p data-i18n="about-p">GEN SYSTEM은 자동화 설비 유지보수 실무와 무역 회사에서 쌓은 글로벌 소싱·수출입 경험을 바탕으로 출발했습니다. 단순 판매가 아니라, 설비에 맞는 부품과 그 부품을 움직이는 프로그램까지 함께 제안합니다.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="best-products">
-            <h2 data-i18n="best-title">Weekly Best Products</h2>
-            <div id="product-list" class="best-products-grid">
-                <div class="loading-products" data-i18n="loading-products">상품을 불러오는 중입니다...</div>
+        <!-- CASES -->
+        <section class="section section-alt" id="cases" aria-labelledby="cases-title">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="eyebrow" data-i18n="cases-eyebrow">기술 사례</p>
+                    <h2 id="cases-title" data-i18n="cases-title">직접 만들고, 시험 장비에서 확인했습니다</h2>
+                    <p class="lead" data-i18n="cases-lead">각 사례는 과제 → 만든 것 → 결과 순서로 정리했습니다. 화면과 도면은 모두 자체 시험 장비·가상 설비 자료입니다.</p>
+                </header>
+
+                <article class="case case-feature reveal">
+                    <div class="case-media media-paper">
+                        <img src="img/wiring-servo.webp" width="1400" height="917" loading="lazy" decoding="async"
+                             alt="가상 설비의 서보 앰프 결선도. 주전원, CN3 입력 표, 모터·엔코더 케이블이 자동으로 그려져 있음" data-i18n-alt="alt-wiring">
+                    </div>
+                    <div class="case-body">
+                        <p class="case-tag">Wiring Studio</p>
+                        <h3 data-i18n="c1-title">결선도 자동 생성</h3>
+                        <dl class="pbr">
+                            <div><dt data-i18n="lbl-problem">과제</dt><dd data-i18n="c1-p">공급사마다 BOM 형식이 달라, 도면과 전선 목록을 매번 손으로 다시 그려야 했습니다.</dd></div>
+                            <div><dt data-i18n="lbl-built">만든 것</dt><dd data-i18n="c1-b">어떤 공급사 BOM이든 표준 BOM으로 정리한 뒤, 규칙에 따라 주회로·시스템 구성·서보·IO(32점 표) 도면과 전선 목록, 마킹 CSV를 만들고 DXF·PDF로 출력합니다.</dd></div>
+                            <div><dt data-i18n="lbl-result">결과</dt><dd data-i18n="c1-r">규칙 기반이라 설비가 바뀌어도 같은 방식으로 동작합니다. 서로 다른 설비 데이터로 시험했고, 가상 설비 1대분 도면 26장을 한 번에 출력했습니다.</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <div class="case-row">
+                    <article class="case case-phone reveal">
+                        <div class="case-media media-dark media-phone">
+                            <img src="img/phone-remote.webp" width="780" height="536" loading="lazy" decoding="async"
+                                 alt="휴대폰 설비 모니터의 원격 조작 화면. 원격 허용 스위치가 꺼져 있거나 늦게 도착한 명령이 거절된 기록이 보임" data-i18n-alt="alt-phone">
+                        </div>
+                        <div class="case-body">
+                            <p class="case-tag">Remote Monitor</p>
+                            <h3 data-i18n="c2-title">휴대폰 설비 모니터 · 원격 조작</h3>
+                            <dl class="pbr">
+                                <div><dt data-i18n="lbl-problem">과제</dt><dd data-i18n="c2-p">설비 상태를 보려면 현장에 가야 했고, 원격 버튼은 안전이 걱정이었습니다.</dd></div>
+                                <div><dt data-i18n="lbl-built">만든 것</dt><dd data-i18n="c2-b">PLC 실시간 데이터를 휴대폰에서 확인(Firebase). 원격 버튼에는 겹겹의 안전 설계를 넣었습니다.</dd></div>
+                            </dl>
+                            <ul class="safety" data-i18n="c2-list">
+                                <li><strong>현장 허용</strong> HMI의 ‘원격 허용’ 스위치가 켜져 있을 때만 동작</li>
+                                <li><strong>3초 감시</strong> PLC 래더가 하트비트를 감시, 끊기면 원격 명령 차단</li>
+                                <li><strong>지연 거절</strong> 늦게 도착한 명령·모르는 명령은 실행하지 않음</li>
+                                <li><strong>계정 제한</strong> 허용된 Google 계정 하나만 접속</li>
+                            </ul>
+                            <p class="case-result"><span class="k" data-i18n="lbl-result">결과</span> <span data-i18n="c2-r">조건이 맞지 않으면 PLC가 실행하지 않고, 거절 이유를 화면에 남깁니다.</span></p>
+                        </div>
+                    </article>
+
+                    <article class="case case-vision reveal">
+                        <div class="case-media media-dark">
+                            <svg class="vision-svg" viewBox="0 0 400 300" role="img" aria-labelledby="vg-t">
+                                <title id="vg-t" data-i18n="alt-vision">카메라가 감시 구역을 보고, 침입을 감지하면 PLC를 거쳐 서보를 정지시키는 구성도</title>
+                                <defs>
+                                    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#5b8cff" stop-opacity=".45"/>
+                                        <stop offset="1" stop-color="#5b8cff" stop-opacity=".05"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect x="168" y="22" width="64" height="36" rx="8" fill="#1e2b4a" stroke="#5b8cff" stroke-width="2"/>
+                                <circle cx="200" cy="40" r="11" fill="#0b1730" stroke="#9db8ff" stroke-width="3"/>
+                                <text x="242" y="44" fill="#9db8ff" font-size="13" font-family="sans-serif">USB CAM</text>
+                                <path d="M188 58 L60 210 L340 210 L212 58 Z" fill="url(#cone)"/>
+                                <rect x="60" y="150" width="280" height="60" rx="6" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="7 5"/>
+                                <text x="70" y="168" fill="#4ade80" font-size="12" font-family="sans-serif">ZONE</text>
+                                <rect x="80" y="196" width="240" height="14" rx="3" fill="#cbd5e1"/>
+                                <rect x="180" y="184" width="44" height="24" rx="4" fill="#94a3b8"/>
+                                <path d="M262 150 q8 -26 22 -14 q10 -16 18 0 l-6 40 h-26 z" fill="#ff7a45" opacity=".9"/>
+                                <rect x="40" y="244" width="92" height="36" rx="8" fill="#1e2b4a" stroke="#5b8cff" stroke-width="2"/>
+                                <text x="86" y="267" fill="#e2e8f0" font-size="14" text-anchor="middle" font-family="sans-serif" font-weight="700">PLC</text>
+                                <rect x="268" y="244" width="104" height="36" rx="8" fill="#b91c1c"/>
+                                <text x="320" y="267" fill="#fff" font-size="14" text-anchor="middle" font-family="sans-serif" font-weight="700">SERVO STOP</text>
+                                <path d="M132 262 H262" stroke="#ff7a45" stroke-width="3" fill="none"/>
+                                <path d="M256 255 l10 7 -10 7" stroke="#ff7a45" stroke-width="3" fill="none"/>
+                                <text x="197" y="255" fill="#fdba74" font-size="13" text-anchor="middle" font-family="sans-serif">≈ 0.4 s</text>
+                            </svg>
+                        </div>
+                        <div class="case-body">
+                            <p class="case-tag">Vision Guard</p>
+                            <h3 data-i18n="c3-title">카메라 비전 감시</h3>
+                            <dl class="pbr">
+                                <div><dt data-i18n="lbl-problem">과제</dt><dd data-i18n="c3-p">작업 구역에 손이나 물체가 들어오면 서보를 빨리 멈추는 보조 수단이 필요했습니다.</dd></div>
+                                <div><dt data-i18n="lbl-built">만든 것</dt><dd data-i18n="c3-b">USB 카메라로 감시 구역 침입을 감지하고, PLC를 거쳐 서보를 정지시킵니다.</dd></div>
+                                <div><dt data-i18n="lbl-result">결과</dt><dd data-i18n="c3-r">시험 장비에서 감지부터 정지까지 약 0.4초 (이송 속도 9000 mm/min 조건)로 측정했습니다.</dd></div>
+                            </dl>
+                            <p class="notice" role="note" data-i18n="c3-note"><strong>보조 기능이며 안전장치(안전 인증 장치)가 아닙니다.</strong> 라이트 커튼·안전 릴레이 등 인증된 안전장치를 대신하지 않습니다.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="mini-grid">
+                    <article class="mini reveal">
+                        <p class="case-tag">Servo Tuning</p>
+                        <h3 data-i18n="c4-title">서보 튜닝 도우미</h3>
+                        <p data-i18n="c4-b">MR Configurator2를 자동으로 조작해 원터치 튜닝, 파라미터 백업(되돌리기용), A4 보고서를 한 번에 처리합니다. 인터넷이 없는 현장 노트북에서도 실행됩니다.</p>
+                    </article>
+                    <article class="mini mini-img reveal">
+                        <img src="img/got-main.webp" width="800" height="600" loading="lazy" decoding="async"
+                             alt="GOT 서보 왕복 운전 화면. 한국어, English, Tiếng Việt 언어 전환 버튼이 있음" data-i18n-alt="alt-got">
+                        <p class="case-tag">GOT HMI</p>
+                        <h3 data-i18n="c5-title">다국어 GOT 화면</h3>
+                        <p data-i18n="c5-b">한국어·English·Tiếng Việt를 버튼 하나로 전환. 운전·JOG·단계 운전·알람 화면을 같은 구조로 만듭니다.</p>
+                    </article>
+                    <article class="mini reveal">
+                        <p class="case-tag">Serial</p>
+                        <h3 data-i18n="c6-title">온도 조절기 통신</h3>
+                        <p data-i18n="c6-b">E5CC 온도 조절기를 PLC 시리얼 통신 모듈로 연결해 현재값·설정값을 읽고 쓰고, 센서·통신 이상을 화면에 표시합니다.</p>
+                    </article>
+                    <article class="mini reveal">
+                        <p class="case-tag">Desktop App</p>
+                        <h3 data-i18n="c7-title">지점 업무 ERP</h3>
+                        <p data-i18n="c7-b">지점 업무를 관리하는 데스크톱 ERP 프로그램을 개발했습니다. 현장 PC에 맞춘 가벼운 구성입니다.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <section id="brands" class="brands-section">
-            <h2 data-i18n="brands-title">Key Brands & Parts</h2>
-            <div class="brand-tags">
-                <span data-i18n="brand1">Mitsubishi PLC</span>
-                <span data-i18n="brand2">Servo Motor</span>
-                <span data-i18n="brand3">Inverter</span>
-                <span data-i18n="brand4">Sensor</span>
-                <span data-i18n="brand5">Pneumatics</span>
-                <span data-i18n="brand6">HMI</span>
-                <span data-i18n="brand7">Industrial PC</span>
+        <!-- BATTERY / MANUFACTURING -->
+        <section class="section section-navy" id="battery" aria-labelledby="battery-title">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="eyebrow" data-i18n="bat-eyebrow">2차전지 · 제조 라인 대응</p>
+                    <h2 id="battery-title" data-i18n="bat-title">라인이 늘어나는 속도에 맞춰, 데이터·문서·부품을 준비합니다</h2>
+                    <p class="lead" data-i18n="bat-lead">공정과 설비가 많은 2차전지·제조 현장에서 반복되는 일 — 설비 데이터 확인, 도면 정리, 부품 조달 — 을 작은 팀의 속도로 처리합니다.</p>
+                </header>
+
+                <div class="bat-grid">
+                    <article class="bat reveal">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+                        <h3 data-i18n="b1-title">설비 데이터 수집·원격 모니터링</h3>
+                        <p data-i18n="b1-p">PLC 데이터를 Ethernet(MC 프로토콜)으로 모아 상태·알람·추이를 PC와 휴대폰에서 확인합니다.</p>
+                    </article>
+                    <article class="bat reveal">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+                        <h3 data-i18n="b2-title">문서·도면 표준화</h3>
+                        <p data-i18n="b2-p">공급사마다 다른 BOM을 하나의 형식으로 정리하고, 도면·전선 목록·마킹 자료와 다국어 HMI를 같은 규칙으로 만듭니다.</p>
+                    </article>
+                    <article class="bat reveal">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg>
+                        <h3 data-i18n="b3-title">빠른 부품 조달·단종 대응</h3>
+                        <p data-i18n="b3-p">미쓰비시 계열 부품을 국내외에서 빠르게 찾고, 단종 품목은 대체 모델과 배선·파라미터 호환까지 확인해 제안합니다.</p>
+                    </article>
+                    <article class="bat bat-sec reveal">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        <h3 data-i18n="b4-title">보안 원칙</h3>
+                        <ul class="check" data-i18n="b4-list">
+                            <li>설비 데이터는 기본적으로 현장 안에 둡니다</li>
+                            <li>고객 자료를 외부 서비스에 올리지 않습니다</li>
+                            <li>외부 연결이 필요하면 범위·방식을 먼저 협의합니다</li>
+                            <li>접속은 허용된 계정만, 원격 조작은 현장 허용 시에만</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <h3 class="process-title reveal" data-i18n="proc-title">진행 방식</h3>
+                <ol class="process">
+                    <li class="reveal"><span class="step">01</span><strong data-i18n="s1">요구 확인</strong><span data-i18n="s1-d">설비·공정·문제 정리</span></li>
+                    <li class="reveal"><span class="step">02</span><strong data-i18n="s2">설계·견적</strong><span data-i18n="s2-d">구성·부품·일정 제안</span></li>
+                    <li class="reveal"><span class="step">03</span><strong data-i18n="s3">개발·시뮬레이션</strong><span data-i18n="s3-d">시뮬레이터로 사전 검증</span></li>
+                    <li class="reveal"><span class="step">04</span><strong data-i18n="s4">현장 시운전</strong><span data-i18n="s4-d">실기 연결·조정</span></li>
+                    <li class="reveal"><span class="step">05</span><strong data-i18n="s5">문서·교육</strong><span data-i18n="s5-d">도면·설명서·운전 교육</span></li>
+                </ol>
             </div>
         </section>
 
-        <section id="contact">
-            <h2 data-i18n="contact-title">Contact Us</h2>
-            <div class="contact-info">
-                <p><strong data-i18n="label-email">이메일:</strong> <a href="mailto:gen0910@hotmail.com">gen0910@hotmail.com</a></p>
-                <p><strong data-i18n="label-phone">전화번호:</strong> <a href="tel:054-475-9600">054-475-9600</a></p>
-                <p><strong data-i18n="label-address">주소:</strong> <a href="https://map.naver.com/v5/search/경북 구미시 3공단 1로 302-7 공구상가 8동 217호" target="_blank" class="address-link" data-i18n="val-address">경북 구미시 3공단 1로 302-7 공구상가 8동 217호</a></p>
+        <!-- PARTS -->
+        <section class="section" id="parts" aria-labelledby="parts-title">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="eyebrow" data-i18n="parts-eyebrow">취급 브랜드·부품</p>
+                    <h2 id="parts-title" data-i18n="parts-title">자주 찾는 자동화 부품</h2>
+                </header>
+                <ul class="brand-tags reveal">
+                    <li data-i18n="brand1">Mitsubishi PLC</li>
+                    <li data-i18n="brand2">Servo Motor · Amplifier</li>
+                    <li data-i18n="brand3">Inverter</li>
+                    <li data-i18n="brand6">GOT · HMI</li>
+                    <li data-i18n="brand4">Sensor</li>
+                    <li data-i18n="brand5">Pneumatics</li>
+                    <li data-i18n="brand7">Industrial PC</li>
+                    <li data-i18n="brand8">Cable · Connector</li>
+                </ul>
+
+                <div class="store-head reveal">
+                    <h3 id="best-title" data-i18n="best-title">스마트스토어 인기 상품</h3>
+                    <a class="link-arrow" href="https://smartstore.naver.com/gensystem" target="_blank" rel="noopener" data-i18n="store-more">전체 상품 보기 →</a>
+                </div>
+                <div id="product-list" class="best-products reveal">
+                    <div class="loading-products" data-i18n="loading-products">상품 정보를 불러오는 중...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-panel reveal">
+                    <div class="contact-copy">
+                        <p class="eyebrow" data-i18n="contact-eyebrow">문의</p>
+                        <h2 id="contact-title" data-i18n="contact-title">부품 한 개부터 라인 프로젝트까지, 편하게 물어보세요</h2>
+                        <p data-i18n="contact-p">모델명·수량이나 설비 상황을 보내 주시면 확인 후 연락드립니다.</p>
+                        <div class="hero-cta">
+                            <a class="btn btn-primary btn-lg" href="mailto:gen0910@hotmail.com?subject=%5BGEN%20SYSTEM%5D%20%EC%83%81%EB%8B%B4%20%EC%9A%94%EC%B2%AD"><span data-i18n="cta-consult">상담 요청</span></a>
+                            <a class="btn btn-kakao btn-lg" href="https://open.kakao.com/o/sgu7SlGh" target="_blank" rel="noopener"><span data-i18n="btn-kakao">카카오톡 문의</span></a>
+                        </div>
+                    </div>
+                    <dl class="contact-list">
+                        <div><dt data-i18n="label-email">이메일</dt><dd><a href="mailto:gen0910@hotmail.com">gen0910@hotmail.com</a></dd></div>
+                        <div><dt data-i18n="label-phone">전화</dt><dd><a href="tel:054-475-9600">054-475-9600</a></dd></div>
+                        <div><dt data-i18n="label-address">주소</dt><dd><a href="https://map.naver.com/v5/search/경북 구미시 3공단 1로 302-7 공구상가 8동 217호" target="_blank" rel="noopener" data-i18n="val-address">경북 구미시 3공단 1로 302-7 공구상가 8동 217호</a></dd></div>
+                        <div><dt data-i18n="label-store">쇼핑몰</dt><dd><a href="https://smartstore.naver.com/gensystem" target="_blank" rel="noopener">smartstore.naver.com/gensystem</a></dd></div>
+                    </dl>
+                </div>
             </div>
         </section>
     </main>
 
     <div class="floating-btns">
-        <a href="#contact" class="floating-btn btn-contact-float">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <a href="#contact" class="floating-btn btn-contact-float" aria-label="견적 문의" data-i18n-aria="btn-contact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span class="float-label" data-i18n="btn-contact">견적 문의</span>
         </a>
-        <a href="https://smartstore.naver.com/gensystem" target="_blank" class="floating-btn btn-store-float">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <a href="https://smartstore.naver.com/gensystem" target="_blank" rel="noopener" class="floating-btn btn-store-float" aria-label="네이버 쇼핑몰" data-i18n-aria="btn-shop">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="float-label" data-i18n="btn-shop">네이버 쇼핑몰</span>
         </a>
-        <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" class="floating-btn btn-kakao-float">
-            <svg viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.558 1.712 4.8 4.346 6.09-.165.565-.596 2.034-.683 2.342-.11.386.138.38.292.277.12-.08.193-.133.272-.188.755-.522 2.11-1.455 2.11-1.455.856.166 1.76.248 2.663.248 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/></svg>
-            <span class="float-label" data-i18n="btn-kakao">카카오톡</span>
+        <a href="https://open.kakao.com/o/sgu7SlGh" target="_blank" rel="noopener" class="floating-btn btn-kakao-float" aria-label="카카오톡" data-i18n-aria="btn-kakao-s">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="fill"><path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.558 1.712 4.8 4.346 6.09-.165.565-.596 2.034-.683 2.342-.11.386.138.38.292.277.12-.08.193-.133.272-.188.755-.522 2.11-1.455 2.11-1.455.856.166 1.76.248 2.663.248 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/></svg>
+            <span class="float-label" data-i18n="btn-kakao-s">카카오톡</span>
         </a>
     </div>
 
-    <footer>
-        <p>&copy; 2025 GEN SYSTEM. All Rights Reserved</p>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="logo logo-foot"><svg class="logo-icon" width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="10" width="60" height="60" fill="#ff3b30"/><rect x="30" y="30" width="60" height="60" fill="#1d3bbf"/></svg><span>GEN SYSTEM</span></div>
+            <p data-i18n="footer-addr">경북 구미시 3공단 1로 302-7 공구상가 8동 217호 · 054-475-9600 · gen0910@hotmail.com</p>
+            <p class="small">&copy; 2026 GEN SYSTEM. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <script>
-        const translations = {
-            ko: {
-                "nav-about": "회사 소개", "nav-services": "서비스", "nav-contact": "문의하기",
-                "hero-title": "공장 자동화 부품의 최적 솔루션", "hero-subtitle": "자동화 설비 유지보수 경험과 다년간의 무역 실무를 바탕으로 최상의 제품을 공급합니다",
-                "btn-contact": "견적 문의", "btn-kakao": "카카오톡 문의", "btn-shop": "네이버 쇼핑몰",
-                "about-title": "About GEN SYSTEM", "about-p": "GEN SYSTEM은 단순한 무역을 넘어 현장 기술 경험을 바탕으로 고객사에게 가장 적합한 자동화 부품을 제안합니다",
-                "about-li1": "<strong>기술 전문성:</strong> 자동화 설비 유지보수 업무 수행 및 현장 실무 경험",
-                "about-li2": "<strong>무역 노하우:</strong> 무역 회사 다년간 근무를 통한 글로벌 소싱 및 수출입 실무 숙달",
-                "about-li3": "<strong>글로벌 네트워크:</strong> 해외 우수 제품 수입 및 국내 부품의 해외 수출 최적화",
-                "services-title": "Our Services", "service1-title": "자동화 부품 수입/공급", "service1-p": "전 세계의 경쟁력 있는 자동화 부품을 발굴하여 국내 산업 현장에 신속하게 공급합니다",
-                "service2-title": "글로벌 수출입 대행", "service2-p": "해외 제품의 국내 수입은 물론 우수한 국내 제품을 해외 시장으로 연결하는 가교 역할을 합니다",
-                "service3-title": "기술 컨설팅", "service3-p": "설비 유지보수 경험을 바탕으로 장비에 가장 적합한 부품 선정 및 기술적 조언을 제공합니다",
-                "best-title": "오늘의 추천 상품", "loading-products": "상품 정보를 불러오는 중...",
-                "brands-title": "Key Brands & Parts", "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
-                "shop-banner": "GEN SYSTEM 네이버 스마트스토어 방문하기 &rarr;",
-                "contact-title": "Contact Us", "label-email": "이메일:", "label-phone": "전화번호:", "label-address": "주소:", "val-address": "경북 구미시 3공단 1로 302-7 공구상가 8동 217호"
-            },
-            en: {
-                "nav-about": "About", "nav-services": "Services", "nav-contact": "Contact",
-                "hero-title": "Optimal Solutions for Factory Automation Parts", "hero-subtitle": "Best products based on maintenance experience and trade practice",
-                "btn-contact": "Inquiry", "btn-kakao": "KakaoTalk", "btn-shop": "Naver Shop",
-                "about-title": "About GEN SYSTEM", "about-p": "Most suitable automation parts based on field technical experience",
-                "about-li1": "<strong>Expertise:</strong> Maintenance and on-site experience",
-                "about-li2": "<strong>Know-how:</strong> Global sourcing and import/export expertise",
-                "about-li3": "<strong>Network:</strong> Optimized import/export of excellent products",
-                "services-title": "Our Services", "service1-title": "Import/Supply", "service1-p": "Supplying competitive automation parts worldwide",
-                "service2-title": "Import/Export Agency", "service2-p": "Bridge connecting domestic products to overseas markets",
-                "service3-title": "Technical Consulting", "service3-p": "Technical advice for the most suitable parts",
-                "best-title": "Recommended Products", "loading-products": "Loading products...",
-                "brands-title": "Key Brands & Parts", "brand1": "Mitsubishi PLC", "brand2": "Servo Motor", "brand3": "Inverter", "brand4": "Sensor", "brand5": "Pneumatics", "brand6": "HMI", "brand7": "Industrial PC",
-                "shop-banner": "Visit GEN SYSTEM Naver Smart Store &rarr;",
-                "contact-title": "Contact Us", "label-email": "Email:", "label-phone": "Phone:", "label-address": "Address:", "val-address": "Room 217, Bldg 8, Industrial Complex, Gumi-si, Korea"
-            },
-            ja: {
-                "nav-about": "会社紹介", "nav-services": "サービス", "nav-contact": "お問い合わせ",
-                "hero-title": "工場自動化部品の最適ソリューション", "hero-subtitle": "自動化設備のメンテナンス経験と長年の貿易実務をベースに、最適な製品を供給します",
-                "btn-contact": "見積り依頼", "btn-kakao": "カカオトーク", "btn-shop": "ネイバーショップ",
-                "about-title": "About GEN SYSTEM", "about-p": "GEN SYSTEMは単なる貿易を超え、現場의 技術経験に基づき、お客様に最適な自動化部品を提案します",
-                "about-li1": "<strong>技術的な専門性:</strong> 自動化設備のメンテナンス業務遂行および現場実務経験",
-                "about-li2": "<strong>貿易ノウハウ:</strong> 貿易会社での長年の勤務を通じたグローバルソーシングおよび輸出入実務の習熟",
-                "about-li3": "<strong>グローバルネットワーク:</strong> 海外の優れた製品の輸入および国内部品の海外輸出を最適化",
-                "services-title": "Our Services", "service1-title": "自動化部品の輸入・供給", "service1-p": "世界中の競争力のある自動化部品を発掘し、国内の産業現場に迅速に供給します",
-                "service2-title": "グローバル輸出入代行", "service2-p": "海外製品の国内輸入はもちろん、優れた国内製品を海外市場へとつなぐ架け橋の役割を果たします",
-                "service3-title": "技術コンサルティング", "service3-p": "設備メンテナンスの経験を活かし、装置に最適な部品選定および技術的なアドバイスを提供します",
-                "best-title": "今日のおすすめ商品", "loading-products": "商品を読み込み中...",
-                "brands-title": "主要ブランド・部品", "brand1": "三菱電機 PLC", "brand2": "サーボモータ", "brand3": "インバータ", "brand4": "セン사", "brand5": "空圧機器", "brand6": "HMI", "brand7": "産業用 PC",
-                "shop-banner": "GEN SYSTEM ネ이バースマートストアを訪れる &rarr;",
-                "contact-title": "お問い合わせ", "label-email": "メール:", "label-phone": "電話番号:", "label-address": "住所:", "val-address": "慶尚北道 亀尾市 3工団1路 302-7 工具商街 8棟 217号"
-            },
-            zh: {
-                "nav-about": "公司介绍", "nav-services": "服务项目", "nav-contact": "联系我们",
-                "hero-title": "工厂自动化零件的最佳解决方案", "hero-subtitle": "凭借自动化设备维护经验和多年的贸易实务提供最优质的产品",
-                "btn-contact": "询价", "btn-kakao": "KakaoTalk", "btn-shop": "Naver 商店",
-                "about-title": "关于 GEN SYSTEM", "about-p": "GEN SYSTEM 不仅仅从事贸易更凭借现场技术经验，为客户提供最合适的自动化零件解决方案",
-                "about-li1": "<strong>技术专业性:</strong> 自动化设备维护业务执行及现场实践经验",
-                "about-li2": "<strong>贸易知识:</strong> 通过多年在贸易公司工作的经验精通全球采购及进出口实务",
-                "about-li3": "<strong>全球网络:</strong> 优化海外优质产品的进口及国内零件的海外出口",
-                "services-title": "我们的服务", "service1-title": "自动化零件进口与供应", "service1-p": "发掘全球具有竞争力的自动化零件迅速供应至韩国国内工业现场",
-                "service2-title": "全球进出口代理", "service2-p": "不仅进口海外产品还作为桥梁将韩国国内优秀产品推向海外市场",
-                "service3-title": "技术咨询", "service3-p": "凭借设备维护 experience 为设备提供最合适的零件选型及技术建议",
-                "best-title": "今日推荐商品", "loading-products": "正在加载商品...",
-                "brands-title": "核心品牌与零件", "brand1": "三菱 PLC", "brand2": "伺服电机", "brand3": "变频器", "brand4": "传感器", "brand5": "气动元件", "brand6": "人机界面 (HMI)", "brand7": "工业电脑",
-                "shop-banner": "访问 GEN SYSTEM Naver 智能商店 &rarr;",
-                "contact-title": "联系我们", "label-email": "邮箱:", "label-phone": "电话:", "label-address": "地址:", "val-address": "庆尚北道 龟尾市 3工团1路 302-7 工具商街 8栋 217号"
-            }
-        };
-
-        const config = { headerHeight: 70, langNames: { ko: "한국어", en: "English", ja: "日本語", zh: "中文" } };
-
-        function setLanguage(lang) {
-            if (!translations[lang]) return;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
-            });
-            const currentTextEl = document.getElementById('current-lang-text');
-            if (currentTextEl) currentTextEl.innerText = config.langNames[lang];
-            document.querySelectorAll('.lang-dropdown-content a').forEach(a => a.classList.toggle('active', a.id === `lang-${lang}`));
-            document.getElementById('lang-menu')?.classList.remove('show');
-            document.querySelector('.nav-links')?.classList.remove('active');
-            document.querySelector('.menu-toggle')?.classList.remove('active');
-            localStorage.setItem('preferred-lang', lang);
-            document.documentElement.lang = lang;
-            const badgeTexts = { ko: '추천', en: 'PICK', ja: 'おすすめ', zh: '推荐' };
-            document.querySelectorAll('.best-badge').forEach(el => el.innerText = badgeTexts[lang] || badgeTexts.ko);
-        }
-
-        function toggleLangMenu(event) { event.stopPropagation(); document.getElementById('lang-menu')?.classList.toggle('show'); }
-
-        async function loadBestProducts() {
-            const productList = document.getElementById('product-list');
-            productList.innerHTML = `
-                <div class="product-image-container" style="grid-column: 1 / -1; width: 100%; text-align: center; padding: 10px 0;">
-                    <a href="https://smartstore.naver.com/gensystem" target="_blank" style="display: block; transition: transform 0.2s ease;">
-                        <img src="스마트스토어판매상품.png" alt="Naver Smart Store Products" class="responsive-product-img">
-                        <div class="shop-banner-link" style="margin-top: 20px; padding: 12px; background: #f8f9fa; border-radius: 8px; display: inline-block; border: 1px solid #eee;">
-                            <span data-i18n="shop-banner" style="color: #222; font-weight: 600; font-size: 0.95rem;">GEN SYSTEM 네이버 스마트스토어 방문하기 &rarr;</span>
-                        </div>
-                    </a>
-                </div>
-            `;
-            const savedLang = localStorage.getItem('preferred-lang') || 'ko';
-            setLanguage(savedLang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'ko';
-            setLanguage(savedLang);
-            loadBestProducts();
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            menuToggle?.addEventListener('click', () => { navLinks?.classList.toggle('active'); menuToggle.classList.toggle('active'); });
-            window.addEventListener('click', () => { document.getElementById('lang-menu')?.classList.remove('show'); });
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href !== '#' && href.startsWith('#')) {
-                        const target = document.querySelector(href);
-                        if (target) {
-                            e.preventDefault();
-                            navLinks?.classList.remove('active');
-                            menuToggle?.classList.remove('active');
-                            const offsetPosition = target.getBoundingClientRect().top + window.pageYOffset - config.headerHeight;
-                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="main.js?v=2026-10" defer></script>
 </body>
 </html>
