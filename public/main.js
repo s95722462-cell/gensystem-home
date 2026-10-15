@@ -28,7 +28,7 @@
         'cases-title': 'Built in-house, verified on our test rig',
         'cases-lead': 'Each case reads problem → what we built → result. All screens and drawings come from our own test rig and a virtual machine.',
         'lbl-problem': 'Problem', 'lbl-built': 'Built', 'lbl-result': 'Result',
-        'alt-wiring': 'Servo amplifier wiring drawing of a virtual machine, showing main power, CN3 input table, motor and encoder cables, all generated automatically',
+        'alt-wiring': 'Servo wiring drawing of our own test rig: breaker, contactor, servo amplifier, motor and positioning-module wiring with a component selection table, all generated automatically',
         'c1-title': 'Automatic wiring drawings',
         'c1-p': 'Every supplier sends a different BOM format, so drawings and wire lists had to be redrawn by hand each time.',
         'c1-b': 'Any supplier BOM is normalised into a standard BOM, then rules generate main-circuit, system-configuration, servo and I/O (32-point table) drawings, a wire list and a marking CSV, exported as DXF and PDF.',
