@@ -34,7 +34,7 @@
         'c1-b': 'Any supplier BOM is normalised into a standard BOM, then rules generate main-circuit, system-configuration, servo and I/O (32-point table) drawings, a wire list and a marking CSV, exported as DXF and PDF.',
         'c1-r': 'Being rule-based, it works the same way when the machine changes. Tested with data from different machines; a full 26-sheet drawing set for one virtual machine is produced in one run.',
         'alt-phone': 'Remote-control screen of the phone equipment monitor, showing commands rejected because the remote-permit switch was off or the command arrived late',
-        'alt-phone-video': 'Screen recording of the phone equipment monitor: live camera view and servo position updating while it is operated with the stop and run buttons',
+        'alt-phone-video': 'Screen recording of the phone equipment monitor: during shuttle operation the camera watch zones stay green and turn red when a hand enters',
         'c2-title': 'Phone equipment monitor · remote control',
         'c2-p': 'Checking equipment status meant walking to the line, and remote buttons raised safety concerns.',
         'c2-b': 'Live PLC data on the phone (Firebase). Remote buttons are wrapped in several safety layers.',

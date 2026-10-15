@@ -467,6 +467,6 @@ ul, ol { list-style: none; }
 }
 
 /* 휴대폰 화면 녹화 (지연 로딩, 화면에 보일 때만 재생) */
-.phone-video { width: 100%; max-width: 230px; aspect-ratio: 332 / 676; height: auto; border-radius: 22px; border: 6px solid #0b1220; outline: 1px solid #263252; box-shadow: 0 16px 40px rgba(0, 0, 0, .45); background: #0b1220; object-fit: cover; }
+.phone-video { width: 100%; max-width: 230px; aspect-ratio: 332 / 596; height: auto; border-radius: 22px; border: 6px solid #0b1220; outline: 1px solid #263252; box-shadow: 0 16px 40px rgba(0, 0, 0, .45); background: #0b1220; object-fit: cover; }
 .media-phone img { flex: 1 1 260px; }
 @media (max-width: 640px) { .phone-video { max-width: 200px; } }
