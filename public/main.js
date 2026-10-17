@@ -88,6 +88,7 @@
         'btn-kakao': 'KakaoTalk chat',
         'label-email': 'Email', 'label-phone': 'Phone', 'label-address': 'Address', 'label-store': 'Store',
         'val-address': 'Rm 217, Bldg 8, Tool Plaza, 302-7 3gongdan 1-ro, Gumi-si, Gyeongbuk, Korea',
+        'footer-analytics': 'We use Google Analytics for visit statistics. No personal details such as names or contact information are collected.',
         'footer-addr': 'Rm 217, Bldg 8, Tool Plaza, 302-7 3gongdan 1-ro, Gumi-si, Gyeongbuk, Korea · +82-54-475-9600 · gen0910@hotmail.com',
         'btn-contact': 'Inquiry', 'btn-shop': 'Naver Shop', 'btn-kakao-s': 'KakaoTalk'
     };
@@ -225,3 +226,15 @@
     }, { rootMargin: '200px 0px', threshold: 0.25 });
     vids.forEach(function (v) { io.observe(v); });
 })();
+
+// 방문 통계: 상담 요청(메일)·전화·쇼핑몰 클릭을 따로 셈 (어디서 문의가 오는지 보려고)
+document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || typeof window.gtag !== 'function') return;
+    var h = a.getAttribute('href') || '';
+    var where = (a.closest('section, header, footer, .floating-btn') || {}).id || (a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : a.classList.contains('floating-btn') ? 'floating' : 'page');
+    if (h.indexOf('mailto:') === 0) gtag('event', 'generate_lead', { method: 'email', link_location: where });
+    else if (h.indexOf('tel:') === 0) gtag('event', 'generate_lead', { method: 'phone', link_location: where });
+    else if (h.indexOf('smartstore.naver.com') >= 0) gtag('event', 'store_click', { link_location: where });
+}, true);
+

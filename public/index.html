@@ -32,6 +32,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     <link rel="stylesheet" href="style.css?v=2026-10">
     <script>document.documentElement.classList.add('js');</script>
+    <!-- 방문 통계: Google Analytics (Firebase 프로젝트 gensystemhomepage 에 연결된 속성) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBEF0L3CSE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CBEF0L3CSE');
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -438,10 +446,11 @@
         <div class="container footer-inner">
             <div class="logo logo-foot"><svg class="logo-icon" width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="10" width="60" height="60" fill="#ff3b30"/><rect x="30" y="30" width="60" height="60" fill="#1d3bbf"/></svg><span>GEN SYSTEM</span></div>
             <p data-i18n="footer-addr">경북 구미시 3공단 1로 302-7 공구상가 8동 217호 · 054-475-9600 · gen0910@hotmail.com</p>
+            <p class="small" data-i18n="footer-analytics">방문 통계를 위해 Google Analytics를 사용합니다. 이름·연락처 같은 개인 정보는 수집하지 않습니다.</p>
             <p class="small">&copy; 2026 GEN SYSTEM. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="main.js?v=2026-10" defer></script>
+    <script src="main.js?v=2026-10-17" defer></script>
 </body>
 </html>
