@@ -55,7 +55,7 @@
         'c6-b': 'An E5CC temperature controller connected through a PLC serial communication module: read/write present and set values, with sensor and comms faults shown on screen.',
         'c7-title': 'Branch-office ERP',
         'c7-b': 'A desktop ERP program for managing branch-office work, kept light to suit office PCs.',
-        'alt-iqr': 'GX Works3 monitoring the servo program of an iQ-R project: project tree on the left, ladder in the middle, and the simple motion module simulator (RD77MS4) at the lower right',
+        'alt-iqr': 'GX Works3 monitoring the servo program of an iQ-R project in simulation: project tree on the left, and an axis-control function block (FB_Axis) instance with READY and servo-ON signals lit in the ladder',
         'c8-title': 'Q series → iQ-R migration with simulation testing',
         'c8-p': 'Moving a Q-series PLC program to iQ-R meant rebuilding the function blocks and simple motion settings, and checking the behaviour without real hardware.',
         'c8-b': 'We reorganised the ladder into function blocks, moved it to an iQ-R project (R08CPU + RD77MS4), and built a tool that runs program import → full rebuild → simulator write → servo motion tests in one go.',
