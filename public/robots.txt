@@ -4,5 +4,9 @@ Allow: /
 # 부품몰 시험 공개 중 (견본 데이터) — 정식으로 열 때 이 줄을 지움
 Disallow: /mall/
 
+# 카톡으로 주소를 보낼 때 미리 보기(그림·제목)가 나오게 — 카톡 수집기는 부품몰 시험 중에도 허용
+User-agent: kakaotalk-scrap
+Allow: /
+
 Sitemap: https://gensystem.co.kr/sitemap.xml
 Sitemap: https://www.gensystem.co.kr/sitemap.xml
