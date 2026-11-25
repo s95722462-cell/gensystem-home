@@ -1,0 +1,367 @@
+{
+  "_note": "견본 데이터입니다. 실제 재고·가격이 아닙니다. Firebase 설정 전(config.js 의 apiKey 가 PASTE_...)에만 가게 화면에 쓰입니다.",
+  "sample": true,
+  "products": [
+    {
+      "id": "q06udvcpu",
+      "model": "Q06UDVCPU",
+      "name": "Q 시리즈 범용 고속 CPU",
+      "brand": "미쓰비시",
+      "category": "PLC CPU·베이스·전원",
+      "condition": "used",
+      "stock": 2,
+      "price": 620000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "프로그램 용량",
+          "60K 스텝"
+        ],
+        [
+          "내장 포트",
+          "이더넷, USB"
+        ],
+        [
+          "상태",
+          "동작 확인 완료, 외관 사용감 있음"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "q38b",
+      "model": "Q38B",
+      "name": "Q 시리즈 메인 베이스 8슬롯",
+      "brand": "미쓰비시",
+      "category": "PLC CPU·베이스·전원",
+      "condition": "used",
+      "stock": 2,
+      "price": 110000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "슬롯",
+          "전원 + CPU + I/O 8"
+        ],
+        [
+          "상태",
+          "동작 확인 완료"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "q61p",
+      "model": "Q61P",
+      "name": "Q 시리즈 전원 모듈 AC100~240V",
+      "brand": "미쓰비시",
+      "category": "PLC CPU·베이스·전원",
+      "condition": "new",
+      "stock": 3,
+      "price": 145000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "입력",
+          "AC100~240V"
+        ],
+        [
+          "출력",
+          "DC5V 6A"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "qj71e71-100",
+      "model": "QJ71E71-100",
+      "name": "이더넷 인터페이스 모듈 100BASE-TX",
+      "brand": "미쓰비시",
+      "category": "통신 모듈",
+      "condition": "used",
+      "stock": 3,
+      "price": 280000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "점유 I/O",
+          "32점"
+        ],
+        [
+          "통신",
+          "MC 프로토콜, 소켓, SLMP"
+        ],
+        [
+          "상태",
+          "동작 확인 완료"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "q64ad",
+      "model": "Q64AD",
+      "name": "아날로그 입력 4채널 (전압·전류)",
+      "brand": "미쓰비시",
+      "category": "아날로그",
+      "condition": "used",
+      "stock": 4,
+      "price": 240000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "입력",
+          "4채널, −10~10V / 0~20mA"
+        ],
+        [
+          "분해능",
+          "0~4000 (고분해능 0~12000)"
+        ],
+        [
+          "변환 속도",
+          "80µs/채널"
+        ],
+        [
+          "점유 I/O",
+          "16점"
+        ],
+        [
+          "상태",
+          "실기 동작 확인 (4~20mA 센서)"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "q62dan",
+      "model": "Q62DAN",
+      "name": "아날로그 출력 2채널",
+      "brand": "미쓰비시",
+      "category": "아날로그",
+      "condition": "used",
+      "stock": 2,
+      "price": 210000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "출력",
+          "2채널, 전압·전류"
+        ],
+        [
+          "상태",
+          "동작 확인 완료"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "qd77ms2",
+      "model": "QD77MS2",
+      "name": "심플 모션 모듈 2축 (SSCNET III/H)",
+      "brand": "미쓰비시",
+      "category": "위치결정·모션",
+      "condition": "used",
+      "stock": 1,
+      "price": 690000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "축 수",
+          "2축"
+        ],
+        [
+          "연결 앰프",
+          "MR-J4-B, MR-J3-B 등"
+        ],
+        [
+          "상태",
+          "MR-J3-B 2축 운전·튜닝 확인"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "qd75mh4",
+      "model": "QD75MH4",
+      "name": "위치결정 모듈 4축 (SSCNET III)",
+      "brand": "미쓰비시",
+      "category": "위치결정·모션",
+      "condition": "used",
+      "stock": 1,
+      "price": 520000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "축 수",
+          "4축"
+        ],
+        [
+          "상태",
+          "동작 확인 완료"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "mr-j3-10b",
+      "model": "MR-J3-10B",
+      "name": "서보 앰프 100W (SSCNET III)",
+      "brand": "미쓰비시",
+      "category": "서보 앰프",
+      "condition": "used",
+      "stock": 2,
+      "price": 180000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "용량",
+          "100W"
+        ],
+        [
+          "전원",
+          "단상/3상 AC200~230V"
+        ],
+        [
+          "상태",
+          "파라미터 초기화 후 출고"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "mr-j4-10b",
+      "model": "MR-J4-10B",
+      "name": "서보 앰프 100W (SSCNET III/H)",
+      "brand": "미쓰비시",
+      "category": "서보 앰프",
+      "condition": "used",
+      "stock": 1,
+      "price": 260000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "용량",
+          "100W"
+        ],
+        [
+          "비고",
+          "J3 호환 모드 가능"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "hf-kp13b",
+      "model": "HF-KP13B",
+      "name": "서보 모터 100W 저관성, 브레이크 붙음",
+      "brand": "미쓰비시",
+      "category": "서보 모터",
+      "condition": "used",
+      "stock": 2,
+      "price": 150000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "용량",
+          "100W"
+        ],
+        [
+          "브레이크",
+          "있음 (DC24V)"
+        ],
+        [
+          "맞는 앰프",
+          "MR-J3-10B"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "hg-kr13",
+      "model": "HG-KR13",
+      "name": "서보 모터 100W 저관성",
+      "brand": "미쓰비시",
+      "category": "서보 모터",
+      "condition": "new",
+      "stock": 0,
+      "price": 210000,
+      "leadTime": "입고 문의",
+      "specs": [
+        [
+          "용량",
+          "100W"
+        ],
+        [
+          "맞는 앰프",
+          "MR-J4-10B"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "gt1675m-stba",
+      "model": "GT1675M-STBA",
+      "name": "GOT1000 터치 패널 6.5인치",
+      "brand": "미쓰비시",
+      "category": "터치 패널 (GOT)",
+      "condition": "used",
+      "stock": 1,
+      "price": 390000,
+      "leadTime": "당일 출고",
+      "specs": [
+        [
+          "화면",
+          "6.5\" TFT 640×480"
+        ],
+        [
+          "전원",
+          "DC24V"
+        ],
+        [
+          "상태",
+          "화면 터치 확인 완료"
+        ]
+      ],
+      "manualLinks": [],
+      "photos": [],
+      "visible": true,
+      "updatedAt": "2026-11-04"
+    }
+  ]
+}

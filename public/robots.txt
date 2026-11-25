@@ -1,6 +1,8 @@
 # Updated: 2026-03-26 21:40 KST (Force Refresh)
 User-agent: *
 Allow: /
+# 부품몰 시험 공개 중 (견본 데이터) — 정식으로 열 때 이 줄을 지움
+Disallow: /mall/
 
 Sitemap: https://gensystem.co.kr/sitemap.xml
 Sitemap: https://www.gensystem.co.kr/sitemap.xml

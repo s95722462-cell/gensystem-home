@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>겐시스템 자동화 부품 판매 · 관리</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="css/shop.css?v=20261124zze">
+<script>try{var t=JSON.parse(localStorage.getItem("genshop-theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="notice warn" id="notice" hidden><div class="wrap" id="noticeText"></div></div>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="./"><b>겐시스템</b><span>자동화 부품 판매 · 관리자</span></a>
+  <span style="flex:1"></span>
+  <span class="muted" id="who"></span>
+  <button class="cartbtn" id="loginBtn" type="button">구글로 로그인</button>
+  <button class="cartbtn" id="logoutBtn" type="button" hidden>로그아웃</button>
+</div></header>
+
+<div class="wrap adm">
+  <div id="gate" class="box"><p style="margin:0">관리자 구글 계정으로 로그인하세요.</p></div>
+  <div id="app" hidden>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="quotes" aria-selected="true">견적 요청</button>
+      <button type="button" role="tab" data-tab="products" aria-selected="false">상품</button>
+    </div>
+    <section id="tab-quotes"></section>
+    <section id="tab-products" hidden></section>
+  </div>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

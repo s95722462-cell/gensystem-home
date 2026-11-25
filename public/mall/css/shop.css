@@ -1,0 +1,381 @@
+/* 겐시스템 자동화 부품 판매 — 2026-11-24 사용자가 고른 디자인: 자기 아티팩트 「가을 운전 기록」의 래더 회로도 방식.
+   모눈종이 바탕 · 명판(굵은 테두리) 머리 · 분야 표시등 단추 · 좌우 전원 모선 사이에 상품 한 줄(렁):
+   주소 칸 = 형명, 접점 = 품명·상태·재고, 코일 = 가격.  제조사 이름·로고는 쓰지 않음. 색도 그 아티팩트 그대로(종이·청록 모선·호박색 표시등) */
+:root{
+  --paper:#eef2ef; --grid:#d6e0dc; --ink:#17232c; --ink2:#4b5b66; --ink3:#7d8b93;
+  --rail:#2a6f8f; --lamp:#d98e04; --lamp-soft:#f6e6c4; --on:#2f8a57; --card:#f8faf8; --line:#c3cfca;
+  --ci-red:#ff3b30; --ci-blue:#1d3bbf; --new:#1d3bbf; --used:#6b4f8a;
+  /* 아래쪽(상세·견적함·관리자) 스타일이 쓰는 이름 */
+  --bg:var(--paper); --panel:var(--card); --muted:var(--ink2); --accent:var(--rail); --accent-ink:#ffffff; --accent-soft:#dfeaee;
+  --red:var(--ink); --run:var(--on); --warn:#b87503; --err:#c8321f; --tag:#e4ebe7;
+  --f-disp:"Pretendard Variable",Pretendard,"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121a1f; --grid:#1c272e; --ink:#e3ebe8; --ink2:#a7b5bc; --ink3:#73828a;
+  --rail:#5aa9cc; --lamp:#f2b33d; --lamp-soft:#3a2f17; --on:#5cc48a; --card:#18232a; --line:#2c3a42;
+  --accent-ink:#0c1418; --accent-soft:#1d3038; --new:#3d5ae0; --used:#b79be0; --warn:#f2b33d; --err:#ff7a66; --tag:#202d35; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121a1f; --grid:#1c272e; --ink:#e3ebe8; --ink2:#a7b5bc; --ink3:#73828a;
+  --rail:#5aa9cc; --lamp:#f2b33d; --lamp-soft:#3a2f17; --on:#5cc48a; --card:#18232a; --line:#2c3a42;
+  --accent-ink:#0c1418; --accent-soft:#1d3038; --new:#3d5ae0; --used:#b79be0; --warn:#f2b33d; --err:#ff7a66; --tag:#202d35; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}   /* 모눈 무늬는 뺌 (2026-11-24 사용자 요청) */
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.notice{background:var(--lamp-soft);color:var(--ink);font-size:13px}
+.notice .wrap{padding-block:8px}
+.notice.warn{background:color-mix(in srgb,var(--warn) 18%,var(--panel))}
+header.top{padding-top:28px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+/* 다른 화면(관리자·검색용 페이지)의 한 줄 머리 */
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;border:2px solid var(--ink);background:var(--card);padding:14px 18px}
+.brand{display:inline-flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+.brand::before{content:"";flex:none;align-self:center;width:24px;height:24px;background:linear-gradient(var(--ci-blue),var(--ci-blue)) right bottom/15px 15px no-repeat,linear-gradient(var(--ci-red),var(--ci-red)) left top/15px 15px no-repeat}
+.brand b{font:800 25px/1.1 var(--f-disp);letter-spacing:-.035em}
+.brand span{color:var(--ink2);font-size:14px}
+/* 명판 */
+.plate{border:2px solid var(--ink);background:var(--card);padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:end}
+.plate .tag{font:600 12px var(--f-mono);letter-spacing:.12em;color:var(--ink2)}
+.plate .brand{margin:6px 0 4px;flex-wrap:wrap}
+.plate .brand::before{width:clamp(30px,5vw,44px);height:clamp(30px,5vw,44px);background-size:62% 62%,62% 62%}
+.plate .brand b{font-size:clamp(36px,7vw,58px);letter-spacing:-.045em}
+.plate .brand span{font:500 clamp(16px,2.6vw,22px)/1.2 var(--f-disp);letter-spacing:-.02em;color:var(--ink2)}
+.plate p{margin:0 0 14px;color:var(--ink2);max-width:none;word-break:keep-all}
+.spec{font:13px/1.9 var(--f-mono);border-left:2px solid var(--ink);padding-left:16px;color:var(--ink2);white-space:nowrap}
+.spec b{color:var(--ink);font-weight:600}
+.spec .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.search{display:flex;min-width:0;max-width:560px;border:2px solid var(--ink);background:var(--paper)}
+.search input{flex:1;min-width:0;font:inherit;font-size:16px;padding:11px 14px;border:0;background:transparent;color:var(--ink)}
+.search input:focus{outline:2px solid var(--rail);outline-offset:-2px}
+.search button{font:inherit;font-weight:700;border:0;background:var(--ink);color:var(--card);padding:0 22px;cursor:pointer}
+.cartbtn{font:600 13px var(--f-mono);border:2px solid var(--ink);background:var(--card);color:var(--ink);padding:8px 12px;cursor:pointer;white-space:nowrap}
+.kakaobtn{font:700 13px var(--f-body);background:#FEE500;color:#191919;padding:10px 14px;text-decoration:none;white-space:nowrap}
+.kakaobtn[hidden]{display:none}
+.themebtn{font:12px var(--f-mono);border:0;background:none;color:var(--ink2);cursor:pointer;padding:6px 2px;text-decoration:underline;white-space:nowrap}
+.cartbtn:focus-visible,.themebtn:focus-visible,.search button:focus-visible,.cat button:focus-visible,.btn:focus-visible,.card:focus-visible,.kakaobtn:focus-visible{outline:2px solid var(--rail);outline-offset:2px}
+/* 휴대폰: 카톡 문의는 화면 오른쪽 아래에 떠 있는 말풍선 (견적함 서랍 z-index 20 보다 아래) */
+@media (max-width:760px){
+  .kakaobtn{position:fixed;z-index:15;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));padding:12px 18px;border-radius:22px 22px 4px 22px;font-size:15px;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+  .kakaobtn::before{content:"";display:inline-block;width:16px;height:14px;margin-right:7px;vertical-align:-2px;border-radius:50%;background:#191919}
+  main.wrap{padding-bottom:96px}
+  .plate{grid-template-columns:minmax(0,1fr);padding:18px 16px}
+  .spec{border-left:0;border-top:2px solid var(--ink);padding:10px 0 0;white-space:normal}
+}
+/* 래더 한 줄 (js/ladder.js 가 실제로 스캔해서 그림). 미쓰비시 래더 모니터 방식: 선은 그대로, 통하는 접점·켜진 코일 안쪽만 채움 */
+.rung{height:60px;margin-top:16px;cursor:pointer;overflow:hidden}
+.rung svg{display:block}
+.rung path{stroke:var(--ink)}   /* 래더 선은 검정 (어두운 화면에서는 밝은 색) */
+.rung .on{fill:var(--new);opacity:0}   /* 통하는 접점·켜진 코일 = 파랑 (GX Works 모니터 색) */
+.rung .on.live{opacity:1}
+.rung path.coil{fill:none;opacity:1;stroke:var(--ink)}
+.rung path.coil.live{stroke:var(--new);stroke-width:4}   /* 코일: 괄호 자체가 파랗게 켜짐 */
+.rung text{fill:var(--ink2);font:600 10px var(--f-mono)}
+.rung text.nt{fill:var(--on);font:500 10px var(--f-body)}
+.rung text.st{fill:var(--ink);font-size:12px}
+/* 분야 표시등 */
+.cat{display:flex;gap:8px 10px;flex-wrap:wrap;margin:14px 0 4px;font:12px var(--f-mono);color:var(--ink2);align-items:center}
+.cat h2{font:inherit;margin:0 4px 0 0;font-weight:400}
+.cat button{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);padding:6px 12px 6px 10px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
+.cat button::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink3);transition:background .2s,box-shadow .2s}
+.cat button[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+.cat button[aria-pressed="true"]::before{background:var(--lamp);box-shadow:0 0 0 3px var(--lamp-soft)}
+.cat button small{font:inherit;opacity:.7}
+.cat .ic{display:none}
+main.wrap{display:block;padding-block:8px 56px}
+.listhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;margin:14px 0 4px}
+.listhead h1{font:800 24px/1.2 var(--f-disp);letter-spacing:-.03em;margin:0;text-wrap:balance}
+.listhead p{margin:0;color:var(--ink2);font:12px var(--f-mono)}
+/* 래더: 좌우 전원 모선 사이에 상품 한 줄씩 */
+.grid{position:relative;margin-top:10px;padding:0 34px}
+.grid::before,.grid::after{content:"";position:absolute;top:0;bottom:0;width:4px;background:var(--rail)}
+.grid::before{left:12px}.grid::after{right:12px}
+.card{position:relative;width:100%;display:grid;grid-template-columns:150px minmax(0,1fr) 150px;gap:14px;align-items:start;padding:12px 0;background:none;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.card::before{content:"";position:absolute;left:-22px;right:-22px;top:31px;height:2px;background:var(--line);z-index:0}
+.card:hover::before{background:var(--rail)}
+.card .addr{position:relative;z-index:1;background:var(--paper);border:1px solid var(--rail);padding:6px 6px;text-align:center;min-width:0}
+.card .model{display:block;font:600 14px/1.35 var(--f-mono);color:var(--ink);overflow-wrap:anywhere}   /* 형명은 진한 글씨로 (청록보다 대비가 큼) */
+.card .addr small{display:block;color:var(--ink3);font:11px/1.3 var(--f-body)}
+.card .ct{position:relative;z-index:1;justify-self:start;max-width:100%;background:var(--card);border:1px solid var(--line);padding:6px 12px 7px 26px;display:flex;gap:10px;align-items:center}
+.card:hover .ct{border-color:var(--ink)}
+.card .ct::before,.card .ct::after{content:"";position:absolute;top:8px;bottom:8px;width:2px;background:var(--ink)}
+.card .ct::before{left:9px}.card .ct::after{left:15px}
+.card .ct .thumb{width:52px;height:40px;aspect-ratio:auto;flex:none}
+.card .name{display:block;font-weight:700;color:var(--ink);font-size:15px;min-height:0;line-height:1.45}
+.card .meta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;margin-top:3px}
+/* 가격 = 래더의 코일 괄호 (   ) : 위아래 선 없이 좌우 둥근 선만 */
+.card .coil{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:stretch;justify-content:center}
+.card .coil .cv{background:var(--paper);border:0 solid var(--on);border-left-width:3px;border-right-width:3px;border-radius:14px/50%;padding:3px 12px;line-height:1.3}
+.card .coil .price{display:block;font:600 15px/1.35 var(--f-mono);color:var(--ink)}
+.card .coil small{position:absolute;left:0;right:0;top:calc(50% + 15px);font-size:11px;color:var(--ink3);line-height:1.2;text-align:center}   /* 괄호가 가로선 한가운데 오도록 작은 글씨는 아래에 따로 띄움 */
+.card.low .coil .cv{border-color:var(--lamp)}
+.card.sold .coil .cv{border-color:var(--err)}
+.card.sold .coil .price,.card.sold .coil small{color:var(--err)}
+.card.sold .coil small{font-weight:600}
+.ladder-end{font:600 12px var(--f-mono);color:var(--ink3);text-align:center;margin-top:6px}
+@media (max-width:720px){
+  .grid{padding:0 20px}.grid::before{left:4px}.grid::after{right:4px}
+  .card{grid-template-columns:minmax(0,1fr);gap:8px}
+  .card::before{left:-16px;right:-16px;top:27px}
+  .card .addr{justify-self:start;padding:5px 12px;text-align:left}
+  .card .coil{justify-self:start}
+}
+.thumb{aspect-ratio:4/3;max-width:100%;background:var(--tag);display:grid;place-items:center;overflow:hidden}
+.thumb svg{width:70%;height:70%}
+.thumb img{width:100%;height:100%;object-fit:contain}
+.photos{display:flex;gap:6px;margin-top:6px}
+.photos button{border:1px solid var(--line);background:var(--tag);padding:0;width:64px;height:48px;cursor:pointer;overflow:hidden}
+.photos img{width:100%;height:100%;object-fit:cover}
+.model{font-family:var(--f-mono);font-weight:600;font-size:16px;letter-spacing:.01em;overflow-wrap:anywhere}
+.name{color:var(--muted);font-size:13px;min-height:2.6em}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.price{font-family:var(--f-mono);font-weight:600;font-variant-numeric:tabular-nums;color:var(--red)}
+.price small{font-family:var(--f-body);font-weight:400;color:var(--muted);font-size:11px}
+.lamp{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.lamp::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in srgb,currentColor 22%,transparent)}
+.lamp.ok{color:var(--run)} .lamp.low{color:var(--warn)} .lamp.out{color:var(--err)}
+.chip{font:600 11px var(--f-mono);padding:2px 7px;border:1px solid var(--line);background:var(--paper);color:var(--ink2);white-space:nowrap}
+/* 신품 = 파랑 채움, 중고 = 갈색 글씨·테두리. 재고 색(초록·호박·빨강)과 겹치지 않는 색으로 */
+.chip.used{color:var(--used);border-color:var(--used);background:transparent}
+.chip.new{border-color:var(--new);background:var(--new);color:#fff}
+/* detail */
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:24px}
+@media (max-width:760px){.detail{grid-template-columns:minmax(0,1fr)}}
+.back{font:inherit;background:none;border:0;color:var(--accent);cursor:pointer;padding:0 0 12px;font-weight:600}
+.detail h1{font-family:var(--f-mono);font-size:26px;margin:0;overflow-wrap:anywhere}
+.detail .sub{color:var(--muted);margin:2px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:500;width:34%}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tablebox{overflow-x:auto}
+.buy{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.qty{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.qty button{font:inherit;width:36px;border:0;background:var(--tag);color:var(--ink);cursor:pointer}
+.qty input{width:56px;text-align:center;border:0;font:inherit;font-family:var(--f-mono);background:var(--panel);color:var(--ink)}
+.btn{font:inherit;font-weight:600;border:0;background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:6px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:6px 12px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:default}
+.sect{margin-top:22px}
+.sect h2{font-size:14px;letter-spacing:.04em;margin:0 0 8px}
+.gen{border:1px dashed var(--accent);border-radius:8px;padding:14px;background:var(--accent-soft)}
+.gen ul{margin:6px 0 0;padding-left:18px}
+.gen li{margin:3px 0}
+.dl{display:flex;flex-wrap:wrap;gap:8px}
+.dl a,.dl span{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--panel);color:var(--ink);text-decoration:none}
+.dl a:hover{border-color:var(--accent)}
+/* cart */
+.drawer{position:fixed;inset:0 0 0 auto;width:min(680px,100%);background:var(--panel);border-left:1px solid var(--line);z-index:20;display:flex;flex-direction:column;padding:20px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 20px;padding-top:calc(20px + env(safe-area-inset-top,0px));box-shadow:-12px 0 30px rgba(0,0,0,.12);overflow-y:auto}
+.drawer[hidden]{display:none}
+.drawer h2{margin:0 0 12px;font-size:18px}
+.line{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.line b{font-family:var(--f-mono)}
+.line .rm{font:inherit;font-size:12px;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline}
+form label{display:block;font-size:13px;color:var(--muted);margin-top:10px}
+form input,form textarea,form select{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.ok-msg{background:var(--accent-soft);border-radius:6px;padding:12px;margin-top:12px;font-size:14px}
+.err-msg{background:color-mix(in srgb,var(--err) 15%,var(--panel));border-radius:6px;padding:12px;margin-top:12px;font-size:14px}
+.empty{color:var(--muted);padding:30px 0;text-align:center}
+footer{border-top:1px solid var(--line);background:var(--panel);font-size:12px;color:var(--muted)}
+footer .wrap{padding-block:18px;display:grid;gap:4px}
+footer b{color:var(--ink)}
+footer a{color:inherit}
+.todo{color:var(--warn);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* admin */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 14px;border-radius:6px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.adm{padding-block:24px 48px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:16px}
+.box h2{font-size:16px;margin:0 0 10px}
+.list td,.list th{font-size:13px}
+.list tr.click{cursor:pointer}
+.list tr.click:hover td{background:var(--tag)}
+.st{font-size:11px;padding:2px 7px;border-radius:999px;font-weight:600}
+.st.new{background:color-mix(in srgb,var(--err) 18%,transparent);color:var(--err)}
+.st.answered{background:var(--accent-soft);color:var(--accent)}
+.st.closed{background:var(--tag);color:var(--muted)}
+.diff-new td:first-child{border-left:3px solid var(--run)}
+.diff-changed td:first-child{border-left:3px solid var(--warn)}
+.diff-bad td:first-child{border-left:3px solid var(--err)}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 14px}
+.formgrid .wide{grid-column:1/-1}
+.muted{color:var(--muted);font-size:13px}
+.chg{color:var(--warn);font-family:var(--f-mono);font-size:12px}
+
+/* 래더 회로도 방식: 모서리는 각지게 */
+.detail,.btn,.qty,.gen,.dl a,.dl span,form input,form textarea,form select,.ok-msg,.err-msg,.box,.tabs button,.st{border-radius:0}
+.detail{border:2px solid var(--ink)}
+.detail h1{color:var(--rail)}
+.btn{background:var(--ink);color:var(--card)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.back{color:var(--rail)}
+footer{background:transparent}
+
+/* 글 문서 (개인정보처리방침 등) */
+.doc{max-width:820px;padding-block:22px 56px}
+.doc h1{font:800 30px/1.2 var(--f-disp);letter-spacing:-.03em;margin:8px 0 10px}
+.doc h2{font:700 18px/1.3 var(--f-disp);letter-spacing:-.02em;margin:30px 0 8px;padding-left:10px;border-left:4px solid var(--rail)}
+.doc .lead{font-size:16px}
+.doc p,.doc li{max-width:68ch}
+.doc ul{padding-left:20px;margin:6px 0}
+.doc .tablebox{background:var(--card);border:1px solid var(--line);margin:8px 0}
+.doc th{width:26%}
+.doc thead th{color:var(--ink);font-weight:600}
+.doc a{color:var(--rail)}
+
+/* 견적함 표: No. · 품명 · 규격 · 수량 · 단가 · 금액, 부가세는 아래 합계에서 */
+table.quote{font-size:13.5px;margin-bottom:6px}
+table.quote th{width:auto;font-weight:600;color:var(--ink);background:var(--tag);white-space:nowrap}
+table.quote td{vertical-align:middle}
+table.quote td small{display:block;font-size:11.5px;color:var(--warn)}
+table.quote td b{font-family:var(--f-mono);white-space:nowrap}
+table.quote td.num{white-space:nowrap}
+table.quote tfoot td{border-bottom:0;padding-block:4px;color:var(--ink2)}
+table.quote tfoot tr:first-child td{border-top:2px solid var(--ink);padding-top:8px}
+table.quote tfoot tr.total td{font-weight:700;color:var(--ink);font-size:15px}
+table.quote .rm{font:inherit;font-size:12px;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;padding:0;white-space:nowrap}
+tr.line{display:table-row}
+@media (max-width:560px){table.quote{font-size:12.5px}table.quote th,table.quote td{padding:6px 5px}}
+/* 견적함은 세로로 쌓는 상자라, 안의 표가 눌려서 합계가 가려지지 않게 */
+.drawer>*{flex:none}
+/* 견적함 표 안의 작은 수량 조절 */
+.qty.mini{display:inline-flex;vertical-align:middle}
+.qty.mini button{width:26px;height:28px;padding:0;font-size:15px;line-height:1}
+.qty.mini input{width:40px;height:28px;padding:0;text-align:center;border:0;font:inherit;font-family:var(--f-mono);background:var(--panel);color:var(--ink)}
+/* 상세 화면: 수량 상자 · 견적함에 담기 · 카톡으로 문의의 높이를 같게 */
+.detail .buy>.qty,.detail .buy>.btn{height:35px;box-sizing:border-box}
+.detail .buy>.btn{display:inline-flex;align-items:center;justify-content:center;padding:0 14px;font-size:14px;border:1px solid transparent}
+.detail .buy>.qty{border-color:var(--ink)}
+.detail .buy>.qty button{width:32px;font-size:16px}
+.detail .buy>.qty input{width:46px;height:100%;font-size:15px}
+/* 견적함의 닫기 버튼 높이 35 */
+.drawer .btn{height:35px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;font-size:14px}
+/* 목록 한 줄: 세 상자(형명 칸 · 품명 접점 · 가격 코일)의 높이를 같게, 가운데 선은 상자 한가운데로 */
+@media (min-width:721px){
+  .card{align-items:stretch}
+  .card::before{top:50%;margin-top:-1px}
+  .card .addr,.card .coil{display:flex;flex-direction:column;justify-content:center}
+  .card .ct{align-self:stretch}
+}
+/* 견적함의 재고 안내 */
+.stocknote{margin:8px 0 4px;padding:8px 12px;border-left:4px solid var(--lamp);background:var(--lamp-soft);color:var(--ink);font-size:13.5px;font-weight:600}
+/* 견적함 제목 글자 크기 = 닫기 버튼 글자 크기 */
+.drawer h2{font:600 16px/35px var(--f-body);margin:0;background:#FFE14D;color:#191919;padding:0 14px}   /* 제목: 닫기 글씨(14)보다 2 크게, 노란 바탕 (2026-11-24 사용자 요청) */
+.drawer>.row:first-child{align-items:center;margin-bottom:10px}
+/* 품절 줄: 괄호 안에 가격 대신 빨간 '품절' */
+.card.sold .coil .price{font-family:var(--f-body);font-weight:700;letter-spacing:.08em}
+.card.sold{opacity:1}
+.card.sold .model,.card.sold .name{color:var(--ink3)}   /* 흐리게는 글자 색으로만 (상자를 반투명하게 하면 뒤의 가로선이 비쳐 보임) */
+.card.sold .addr{border-color:var(--line)}
+/* 견적함 표가 옆으로 넘치지 않게 칸 여백을 줄임 (구분 칸이 늘어서) */
+table.quote th,table.quote td{padding:7px 5px}
+table.quote .chip{padding:1px 5px}
+.qty.mini button{width:24px}
+.qty.mini input{width:34px}
+.engnote{display:block;font:400 13px/1.5 var(--f-body);letter-spacing:0;color:var(--ink2);margin-top:2px}
+/* 견적함 표시등: 머리 래더의 코일 M1520 이 켜져 있으면(lit) 녹색. 래더 조건에 "견적함 담김(M100)"이 들어 있음 */
+.cartbtn.lit{background:var(--on);border-color:var(--on);color:#fff}
+/* 머리의 견적함·카톡 문의 버튼 높이를 같게 (35) */
+.acts .cartbtn{height:35px;box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;padding:0 12px}
+@media (min-width:761px){.acts .kakaobtn{height:35px;box-sizing:border-box;display:inline-flex;align-items:center;padding:0 14px}}
+/* 검색창: 옛날 도스 화면처럼 — 앞에 > 표시, 비어 있을 때 길쭉한 녹색 밑줄 커서가 깜박임 (불이 들어온 것처럼 빛남) */
+.search{position:relative}
+.search::before{content:">";position:absolute;left:14px;top:50%;transform:translateY(-52%);font:700 17px var(--f-mono);color:var(--on);pointer-events:none}
+.search input{padding-left:36px;caret-color:var(--on)}
+.search input:placeholder-shown{padding-left:66px;caret-color:transparent}
+.search .cur{position:absolute;left:36px;top:50%;margin-top:7px;width:22px;height:3px;background:var(--on);box-shadow:0 0 6px var(--on),0 0 12px color-mix(in srgb,var(--on) 60%,transparent);pointer-events:none;animation:cur-blink 1s steps(1,end) infinite}
+.search input:not(:placeholder-shown) ~ .cur{display:none}
+@keyframes cur-blink{0%,54.9%{opacity:1}55%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.search .cur{animation:none}}
+/* 선은 모두 검정, 아래 상품 래더의 좌우 모선은 머리 래더 그림의 모선과 같은 자리·같은 굵기 (왼쪽 24px, 오른쪽 끝에서 2px) */
+.grid{padding:0 24px 0 46px}
+.grid::before,.grid::after{width:2px;background:var(--ink)}
+.grid::before{left:23px}
+.grid::after{right:1px}
+.card::before{left:-22px;right:-22px;background:var(--ink);height:2px}
+.card:hover::before{background:var(--ink)}
+.card .addr{border-color:var(--ink)}
+.card.sold .addr{border-color:var(--ink3)}
+.card .ct{border-color:var(--ink)}
+@media (max-width:720px){
+  .grid{padding:0 18px 0 40px}
+  .grid::before{left:23px}.grid::after{right:1px}
+  .card::before{left:-16px;right:-16px}
+}
+/* 휴대폰 다듬기 (2026-11-24 아이폰 크기로 확인하고 고친 것) */
+.card .ct{min-width:0;box-sizing:border-box}
+.card .name{overflow-wrap:anywhere}
+.detail .tablebox th{white-space:nowrap}
+@media (max-width:560px){
+  .detail .tablebox th{font-size:12px;padding-inline:4px}
+  .detail{padding:14px}
+  /* 견적함 표: 좁은 화면에서는 줄마다 카드처럼 쌓음 (No.·품명·구분 / 규격·삭제 / 수량·금액 / 단가) */
+  table.quote thead{display:none}
+  table.quote,table.quote tbody,table.quote tfoot{display:block;width:100%}
+  table.quote tbody tr{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:5px 8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+  table.quote tbody td{border:0;padding:0;text-align:left}
+  table.quote tbody td:nth-child(1){grid-area:1/1;color:var(--ink3)}
+  table.quote tbody td:nth-child(2){grid-area:1/2;font-weight:600}
+  table.quote tbody td:nth-child(4){grid-area:1/3;justify-self:end}
+  table.quote tbody td:nth-child(3){grid-area:2/2}
+  table.quote tbody td:nth-child(8){grid-area:2/3;justify-self:end}
+  table.quote tbody td:nth-child(5){grid-area:3/2}
+  table.quote tbody td:nth-child(7){grid-area:3/3;justify-self:end;font-weight:700;font-size:14.5px}
+  table.quote tbody td:nth-child(6){grid-area:4/2;color:var(--ink2);font-size:12.5px}
+  table.quote tbody td:nth-child(6)::before{content:"단가 ";font-family:var(--f-body)}
+  table.quote tfoot tr{display:flex;justify-content:space-between;align-items:baseline}
+  table.quote tfoot td{display:block;padding:5px 0}
+  table.quote tfoot td:last-child{display:none}
+  table.quote tfoot tr:first-child{border-top:2px solid var(--ink);margin-top:2px}
+  table.quote tfoot tr:first-child td{border-top:0}
+}
+/* 실제 아이폰 화면을 보고 고친 것 (2026-11-24): 카톡 말풍선을 작게 */
+@media (max-width:760px){.kakaobtn{padding:9px 14px;font-size:13.5px;border-radius:18px 18px 4px 18px}.kakaobtn::before{width:12px;height:11px;margin-right:5px}}
+/* 휴대폰은 평범한 가게 화면으로 (2026-11-24 사용자: "모바일용을 다르게, 평범하게") —
+   래더 도면 방식은 PC 에만. 휴대폰: 작은 머리(상표 + 견적함 / 검색) → 옆으로 미는 분류 → 줄 구분선만 있는 상품 목록 */
+@media (max-width:720px){
+  header.top{padding-top:10px}
+  .plate{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;border:0;border-bottom:1px solid var(--line);background:none;padding:4px 0 12px}
+  .plate>div:first-child{display:contents}
+  .plate .tag,.plate p,#spec{display:none}
+  .plate .brand{order:1;flex:1 1 auto;margin:0;flex-wrap:nowrap;min-width:0}
+  .plate .brand::before{width:22px;height:22px}
+  .plate .brand b{font-size:22px;letter-spacing:-.03em}
+  .plate .brand span{font:500 12px/1.2 var(--f-body);white-space:nowrap}
+  .spec{order:2;border:0;padding:0;white-space:nowrap}
+  .spec .acts{margin:0;gap:10px}
+  .plate .search{order:3;flex:1 1 100%;max-width:none;border-width:1px;border-radius:8px;overflow:hidden;background:var(--card)}
+  .plate .search button{border-radius:0}
+  .rung{display:none}
+  .cat{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:10px -16px 0;padding:0 16px 2px}
+  .cat::-webkit-scrollbar{display:none}
+  .cat h2{display:none}
+  .cat button{border-radius:999px;padding:7px 13px 7px 11px;font-family:var(--f-body);font-size:13px}
+  .listhead{margin:16px 0 6px}
+  .listhead h1{font-size:19px}
+  /* 목록: 모선·가로선·상자 없이, 줄 구분선만 */
+  .grid{padding:0;margin-top:4px;border-top:1px solid var(--line)}
+  .grid::before,.grid::after,.card::before,.ladder-end{display:none}
+  .card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;align-items:start;padding:13px 2px;border-bottom:1px solid var(--line)}
+  .card .addr{grid-area:1/1;border:0;background:none;padding:0;min-height:0;text-align:left;display:block;justify-self:start}
+  .card .addr small{display:none}
+  .card .model{font-size:16px;font-weight:700;color:var(--ink)}
+  .card .ct{grid-area:2/1;border:0;background:none;padding:0;display:block;min-width:0}
+  .card .ct::before,.card .ct::after{display:none}
+  .card .ct .thumb{float:right;margin-left:10px}
+  .card .name{font-size:14px;font-weight:400;color:var(--ink2);line-height:1.4}
+  .card .meta{margin-top:6px}
+  .card .coil{grid-area:1/2/3/3;justify-self:end;align-self:center;text-align:right;display:block}
+  .card .coil .cv{border:0;background:none;padding:0}
+  .card .coil .price{font-size:16px;font-weight:700}
+  .card .coil small{position:static;display:block;margin-top:2px;text-align:right;font-size:11px}
+  .card.sold .coil .price{font-size:15px}
+  .chip{border-radius:4px}
+  .detail{border-width:1px;border-radius:10px}
+  .kakaobtn{padding:10px 15px;font-size:14px}
+}

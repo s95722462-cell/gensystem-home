@@ -8,6 +8,15 @@
     ],
     "headers": [
       {
+        "source": "/mall/admin.html",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex"
+          }
+        ]
+      },
+      {
         "source": "/robots.txt",
         "headers": [
           {
