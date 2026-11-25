@@ -6,8 +6,11 @@
 <title>겐시스템 자동화 부품 판매</title>
 <meta name="description" content="GEN SYSTEM 보유 재고 자동화 부품 — PLC, 서보, GOT 신품·중고. 형명으로 찾고 견적함에 담아 견적 요청하세요.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://firestore.googleapis.com">
+<!-- 글꼴 CSS 는 화면·스크립트를 막지 않게 늦게 붙인다 (막으면 상품 목록 요청이 1초쯤 늦게 출발함) -->
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/shop.css?v=20261124zze">
 <script>try{var t=JSON.parse(localStorage.getItem("genshop-theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
@@ -51,6 +54,7 @@
   <div>제품명·형명은 각 제조사의 상표입니다. 본 사이트는 제조사의 공식 판매점이 아닙니다.</div>
 </div></footer>
 
+<link rel="modulepreload" href="js/common.js"><link rel="modulepreload" href="js/config.js"><link rel="modulepreload" href="js/ladder.js">
 <script type="module" src="js/shop.js"></script>
 </body>
 </html>

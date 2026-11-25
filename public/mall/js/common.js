@@ -1,5 +1,5 @@
 // 가게 화면과 관리자 화면이 같이 쓰는 작은 도구들
-import { IS_CONFIGURED } from "./config.js";
+import { IS_CONFIGURED, firebaseConfig } from "./config.js";
 
 export const won = n => (Number(n) || 0).toLocaleString("ko-KR") + "원";
 export const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -58,6 +58,48 @@ export async function loadProducts() {
   const products = snap.docs.map(d => ({ id: d.id, ...fromDb(d.data()) }));
   products.sort((a, b) => String(a.category).localeCompare(String(b.category), "ko") || String(a.model).localeCompare(String(b.model)));
   return { sample: false, products };
+}
+
+// ---------- 가게 화면용 빠른 읽기 ----------
+// Firebase SDK(약 170KB)를 받지 않고 Firestore REST 로 바로 읽는다.
+// 사진은 상품 문서 안에 들어 있어 무겁다(16건에 약 0.9MB, 2~5초) → 목록은 사진 빼고 먼저(약 2KB, 0.2초),
+// 사진은 loadPhotos(id) 로 상품마다 따로 받아 뒤따라 채운다.
+const REST = () => `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`;
+const KEY = () => `key=${encodeURIComponent(firebaseConfig.apiKey)}`;
+const LIST_FIELDS = ["model", "name", "brand", "category", "condition", "stock", "price", "leadTime", "specs", "manualLinks", "note", "visible", "updatedAt"];
+const fromVal = v => "stringValue" in v ? v.stringValue : "integerValue" in v ? Number(v.integerValue) : "doubleValue" in v ? v.doubleValue
+  : "booleanValue" in v ? v.booleanValue : "timestampValue" in v ? v.timestampValue
+  : "arrayValue" in v ? (v.arrayValue.values || []).map(fromVal) : "mapValue" in v ? fromFields(v.mapValue.fields) : null;
+const fromFields = f => Object.fromEntries(Object.entries(f || {}).map(([k, v]) => [k, fromVal(v)]));
+
+export async function loadProductsFast() {
+  if (!IS_CONFIGURED) return { ...(await loadProducts()), photosPending: false };
+  const r = await fetch(`${REST()}:runQuery?${KEY()}`, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ structuredQuery: {
+      from: [{ collectionId: "products" }],
+      where: { fieldFilter: { field: { fieldPath: "visible" }, op: "EQUAL", value: { booleanValue: true } } },
+      select: { fields: LIST_FIELDS.map(fieldPath => ({ fieldPath })) }
+    } })
+  });
+  if (!r.ok) throw new Error("상품 읽기 실패 " + r.status);
+  const products = (await r.json()).filter(x => x.document)
+    .map(x => ({ id: x.document.name.split("/").pop(), ...fromDb(fromFields(x.document.fields)) }));
+  products.sort((a, b) => String(a.category).localeCompare(String(b.category), "ko") || String(a.model).localeCompare(String(b.model)));
+  return { sample: false, products, photosPending: true };
+}
+
+// 상품 한 개의 사진만 읽기 (같은 상품은 한 번만 받음). 실패하면 빈 목록.
+const photoJobs = new Map();
+export function loadPhotos(id) {
+  if (!photoJobs.has(id)) photoJobs.set(id, (async () => {
+    try {
+      const r = await fetch(`${REST()}/products/${encodeURIComponent(id)}?mask.fieldPaths=photos&${KEY()}`);
+      if (!r.ok) return [];
+      return (fromFields((await r.json()).fields).photos || []).filter(Boolean);
+    } catch (e) { return []; }
+  })());
+  return photoJobs.get(id);
 }
 
 // 사양(specs): 화면·JSON 에서는 [[항목, 내용]] 이지만 Firestore 는 배열 안 배열을 못 넣음 → [{k, v}] 로 저장

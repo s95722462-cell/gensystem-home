@@ -1,7 +1,7 @@
 // GEN 부품몰 — 가게 화면
 import { IS_CONFIGURED, NTFY_TOPIC, KAKAO_CHAT_URL } from "./config.js";
 import { initLadder, setLadderInput } from "./ladder.js";
-import { won, esc, tiersOf, unitPrice, lampOf, condChip, thumbHtml, loadProducts, store, hanToEng, hasHangul } from "./common.js";
+import { won, esc, tiersOf, unitPrice, lampOf, condChip, thumbHtml, loadProductsFast, loadPhotos, store, hanToEng, hasHangul } from "./common.js";
 
 const $ = id => document.getElementById(id);
 const CART_KEY = "genshop-cart";
@@ -212,10 +212,29 @@ async function sendQuote() {
   openCart(`<div class="ok-msg"><b>견적 요청을 보냈습니다.</b><br>확인 후 적어 주신 연락처로 회신드립니다. 급하시면 054-475-9600 으로 전화 주세요.</div>`);
 }
 
+// 사진은 목록이 뜬 뒤에 뒤따라 받는다: 지금 보고 있는 상품 먼저, 나머지는 4개씩.
+// 사진이 도착하면 그 상품이 화면에 있을 때만 다시 그린다(목록은 0.3초 모아서 한 번).
+async function fillPhotos() {
+  let timer = 0;
+  const showing = () => { const h = decodeURIComponent(location.hash.replace("#", "")); return h.startsWith("p-") ? h.slice(2) : ""; };
+  const got = (p, photos) => {
+    p.photos = photos;
+    if (!photos.length) return;
+    if (showing() === p.id) { if (!$("qty") || $("qty").value === "1") renderDetail(p); else if ($("bigThumb")) $("bigThumb").innerHTML = thumbHtml(p); }
+    else if (!showing()) { clearTimeout(timer); timer = setTimeout(() => { if (!showing()) renderList(); }, 300); }
+  };
+  const first = byId(showing());
+  if (first) got(first, await loadPhotos(first.id));
+  const queue = P.filter(p => p !== first);
+  await Promise.all(Array.from({ length: 4 }, async () => { for (let p; (p = queue.shift());) got(p, await loadPhotos(p.id)); }));
+}
+
 function route() {
   const h = decodeURIComponent(location.hash.replace("#", ""));
   const p = h.startsWith("p-") && byId(h.slice(2));
   if (p) { renderDetail(p); scrollTo(0, 0); } else renderList();
+  // 사진이 아직 안 온 상품을 열면 그 상품 사진부터 받는다 (줄 서 있는 차례를 기다리지 않음)
+  if (p && IS_CONFIGURED && p.photos === undefined) loadPhotos(p.id).then(ph => { if (p.photos !== undefined) return; p.photos = ph; if (ph.length && $("bigThumb") && decodeURIComponent(location.hash) === "#p-" + p.id) $("bigThumb").innerHTML = thumbHtml(p); });
 }
 
 $("searchForm").onsubmit = e => e.preventDefault();
@@ -226,7 +245,7 @@ save();
 
 (async () => {
   try {
-    const r = await loadProducts();
+    const r = await loadProductsFast();
     P = r.products; isSample = r.sample;
     if (isSample) {
       $("notice").hidden = false;
@@ -237,6 +256,7 @@ save();
   { const inStock = P.filter(p => (+p.stock || 0) > 0).length; if ($("spec")) $("spec").innerHTML = `상품 <b>${P.length}종</b><br>재고 있음 <b>${inStock}종</b><br>견적 회신 <b>당일</b><br>가격 <b>부가세 별도</b>`; }   // 명판의 사양 칸
     // 래더의 코일 M1520 이 켜지면 견적함 표시등이 녹색 (래더 조건에 "견적함 담김 M100"이 들어 있음)
     initTheme(); initLadder($("rung"), on => $("cartBtn").classList.toggle("lit", on)); renderCats(); route();
+    if (r.photosPending) fillPhotos();
   } catch (e) {
     console.error(e);
     $("view").innerHTML = '<p class="empty">상품 목록을 불러오지 못했습니다. 새로 고침하거나 054-475-9600 으로 전화 주세요.</p>';
