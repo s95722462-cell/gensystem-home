@@ -26,7 +26,7 @@ export const NTFY_TOPIC = "genshop-quote-k7r2xw9mqa";
 
 // 카카오톡 채널 1:1 채팅 주소. 예: "https://pf.kakao.com/_abcdE/chat"  (채널 관리자센터 → 채널 홍보 → 채팅 URL)
 // 비워 두면 [카톡으로 문의] 버튼이 가게에 나오지 않습니다 (설정 전 견본 상태에서는 모양만 보임).
-export const KAKAO_CHAT_URL = "https://pf.kakao.com/_HxlxoNn/chat";   // 겐시스템 채널 (2026-11-24 사용자 제공: pf.kakao.com/_HxlxoNn)
+export const KAKAO_CHAT_URL = "https://pf.kakao.com/_HxlxoNn";   // 겐시스템 채널 홈 (2026-11-25: /chat 은 "채팅이 불가능한 프로필" 이라 채널 홈으로. 관리자센터에서 1:1 채팅을 켜면 끝에 /chat 을 붙이면 바로 채팅창)
 
 // Firebase JS SDK 버전 고정 (gstatic CDN)
 export const FIREBASE_SDK = "10.14.1";
