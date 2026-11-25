@@ -1,18 +1,22 @@
 // GEN 부품몰 설정 파일
-// 사장님이 Firebase 콘솔에서 "웹 앱 추가" 후 받은 값을 아래 firebaseConfig 에 붙여 넣습니다.
+// Firebase 프로젝트 = gensystemhomepage (회사 홈페이지와 같은 프로젝트, 2026-11-25 설정).
 // apiKey 가 "PASTE_" 로 시작하면 "설정 전" 상태로 보고, 견본 데이터(data/products.sample.json)로만 동작합니다.
 
 export const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "gen-shop-TBD.firebaseapp.com",
-  projectId: "gen-shop-TBD",
-  storageBucket: "gen-shop-TBD.appspot.com",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyBYVd_Q4tjVnTzdCN8si9wpEReSh9Tzl7k",
+  authDomain: "gensystemhomepage.firebaseapp.com",
+  projectId: "gensystemhomepage",
+  storageBucket: "gensystemhomepage.firebasestorage.app",
+  messagingSenderId: "382869173979",
+  appId: "1:382869173979:web:986d8126fa0a53cbf73efe"
 };
 
 // 설정이 끝났는지 자동 판단 (직접 true/false 로 바꿔도 됨)
-export const IS_CONFIGURED = !String(firebaseConfig.apiKey).startsWith("PASTE_");
+// 이 PC 에서 미리 볼 때(127.0.0.1·localhost·집 와이파이 192.168.x)와 자동 시험에서는 "설정 전"(견본 데이터)으로 동작합니다.
+// → 연습하다가 실제 견적·상품을 건드리지 않게. 이 PC 에서 실제 자료로 보려면 주소 끝에 ?live=1
+const LOCAL_PREVIEW = typeof location === "undefined"
+  || (/^(127\.0\.0\.1|localhost|192\.168\.)/.test(location.hostname) && !/[?&]live=1/.test(location.search));
+export const IS_CONFIGURED = !String(firebaseConfig.apiKey).startsWith("PASTE_") && !LOCAL_PREVIEW;
 
 // 관리자 구글 계정 (firestore.rules 의 isAdmin() 과 같은 값이어야 함)
 export const ADMIN_EMAILS = ["s95722462@gmail.com"];
