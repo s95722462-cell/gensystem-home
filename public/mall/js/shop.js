@@ -81,7 +81,7 @@ function renderDetail(p) {
   const [l, t] = lampOf(p);
   const photos = (p.photos || []).filter(Boolean);
   const links = (p.manualLinks || []).filter(m => m && safeUrl(m.url));
-  $("view").innerHTML = `<button class="back" type="button" id="back">← 목록으로</button>
+  $("view").innerHTML = `<button class="back" type="button" id="back">← 목록으로</button><button class="back" type="button" id="share" style="float:right" title="이 상품 주소를 보냅니다 (카톡에 상품 사진이 나옵니다)">공유</button>
   <article class="detail">
     <div>
       <div class="thumb" id="bigThumb">${thumbHtml(p)}</div>
@@ -117,6 +117,14 @@ function renderDetail(p) {
   qi.oninput = qtyNote;
   $("minus").onclick = () => { qi.value = Math.max(1, (+qi.value || 1) - 1); qtyNote(); };
   $("plus").onclick = () => { qi.value = Math.min(9999, (+qi.value || 1) + 1); qtyNote(); };
+  // 공유: 상품마다 따로 있는 주소(p/형명.html)를 보낸다 — 카톡·문자에서 그 상품 사진과 가격이 미리 보기로 나옴.
+  // (주소창의 #p-... 주소는 받는 쪽 프로그램이 # 뒤를 못 봐서 가게 공통 그림만 나옴)
+  $("share").onclick = async () => {
+    const url = new URL("p/" + encodeURIComponent(p.id) + ".html", location.href.split("#")[0]).href;
+    const done = t => { const b = $("share"); if (!b) return; b.textContent = t; setTimeout(() => { if ($("share")) $("share").textContent = "공유"; }, 2500); };
+    if (navigator.share) { try { await navigator.share({ title: p.model + " | 겐시스템", url }); } catch (e) { /* 닫음 */ } return; }
+    try { await navigator.clipboard.writeText(url); done("주소를 복사했습니다"); } catch (e) { window.prompt("이 주소를 복사해 보내세요", url); }
+  };
   // 카톡 문의: 형명·수량을 복사해 두고 채널 채팅을 엶 (채팅창에 글자를 미리 넣어 줄 수는 없어서 붙여넣기만 하면 되게)
   if ($("kakao")) $("kakao").onclick = async () => {
     const q = Math.min(9999, Math.max(1, parseInt(qi.value) || 1));
